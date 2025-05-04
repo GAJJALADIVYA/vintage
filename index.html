@@ -1,0 +1,5390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1122-vintage</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap&family=Metal+Mania&family=Permanent+Marker&family=Tourney:wght@100&family=Trade+Winds&display=swap&family=Playball&display=swap&family=Metal&family=Playball&display=swap&family=Akronim&family=Metal&family=Playball&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Festive&family=Hanalei&family=Merienda+One&family=Yellowtail&display=swap&family=Ewert&family=Permanent+Marker&family=Tourney:wght@100&family=Trade+Winds&display=swap&family=Metal&family=Otomanopee+One&family=Playball&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Festive&family=Hanalei&family=Merienda+One&family=Vampiro+One&family=Yellowtail&display=swap&family=Zen+Tokyo+Zoo&display=swap&family=Fugaz+One&display=swap&family=Tourney:wght@100&display=swap&family=Creepster&family=Permanent+Marker&family=Tourney:wght@100&display=swap&family=Trade+Winds&display=swap&&family=Diplomata+SC&family=Permanent+Marker&family=Tourney:wght@100&family=Trade+Winds&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  
+
+  nav {
+    background-color:var(--seashell); 
+     padding: 1rem; 
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+
+  }
+ 
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    
+  }
+    
+  .page2{
+    padding: 2rem;
+    text-align: center;
+  }
+    
+  .header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .notification-icon,
+  .profile-icon,
+  .nav-icon span {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .nav-icon {
+    display: none;
+  }
+  
+  .user-nav-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+  }
+  .user-nav-links.active {
+    display: flex;
+    top: 60px;
+    right: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-icon {
+      display: block;
+    }
+    .user-nav-links {
+      padding: 10px 0;
+      top: -100%;
+      flex-direction: column;
+      position: absolute;
+      right: 0;
+      transition: right 0.3s ease;
+      background-color: white;
+      width: 100%;
+      display: none;
+    }
+  }
+  
+  /* Notification Container */
+  .notification-container,
+  .profile-container {
+    position: fixed;
+    top: 60px;
+    right: -400px;
+    width: 300px;
+    height: calc(100vh - 60px);
+    background-color: aliceblue;
+    background-position: center;
+    background-size: cover;
+    color:black;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease;
+    z-index: 999;
+
+  }
+  
+  .notification-container h2,
+  .profile-container h2 {
+    margin-bottom: 15px;
+  }
+  
+  .notification-content,
+  .profile-content {
+    overflow-y: auto;
+    max-height: calc(100vh - 140px);
+  }
+  .profile-content p {
+    color: black;
+  }
+  .pf-cont {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: space-between;
+  }
+  .close-btn2 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: mediumvioletred;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+   
+  }
+  
+  .logout-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color:bisque;
+    border: none;
+    color: black;
+    cursor: pointer;
+  }
+   .logout-btn:hover{
+    background-color: mediumvioletred;
+   }
+  
+  /* Overlay for dark theme */
+  .overlay {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s ease;
+    z-index: 1;
+  }
+  
+  .overlay.active {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .notification-container.show,
+  .profile-container.show {
+    right: 0;
+  }
+  
+  .modeToggle-icon {
+    /* background-color: #000; */
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    border-radius: 50%;
+    border-top-left-radius: 5%;
+    border-bottom-left-radius: 50%;
+    bottom: 45%;
+    right: 2px;
+    padding: 5px;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+  }
+  
+  body.dark-mode .modeToggle-icon {
+    background-color: #fff;
+  }
+  
+  .toggle-moon-icon {
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    color: #000;
+  }
+  .toggle-sun-icon {
+    display: block;
+    height: 40px;
+    width: 40px;
+    color: #fff;
+  }
+  
+  body.dark-mode .page {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  body.light-mode .toggle-moon-icon {
+    display: none;
+    /* width: 30px; */
+  }
+  
+  body.dark-mode .toggle-moon-icon {
+  }
+  
+  body.dark-mode .toggle-sun-icon {
+    display: none;
+    /* width: 30px; */
+  }
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+    background:whitesmoke;
+    height: 60px;
+    
+  }
+  .general-header .logo {
+    font-size: 5rem;
+    color:darkblue;
+    
+  }
+
+  .general-header .logo i {
+    color:mediumvioletred;
+    font-size: 2.5rem;
+  }
+  
+  .general-header{
+    height: 80px;
+  }
+  .user-header .logo {
+    font-size: 3rem;
+    font-family: 'Playball', cursive;
+    color:mediumvioletred;
+  }
+  .user-header .logo i {
+    color: darkblue;
+  }
+  .user-header{
+    height: 80px;
+  }
+  .logo{
+    font-size: 3rem;
+    font-family: 'Playball', cursive;
+    color:mediumvioletred;
+    align-items: center;
+  }
+ .logo i {
+    color: darkblue;
+  }
+  
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  /*  */
+  :root {
+    --orange: #ff7800;
+    --blacl: #130f40;
+    --light-color: #666;
+    --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    --border: 0.2rem solid rgba(0, 0, 0, 0.1);
+    --outline: 0.1rem solid rgba(0, 0, 0, 0.1);
+    --outline-hover: 0.2rem solid var(var(--black));
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all 0.2s linear;
+    font-family: "Poppins", sans-serif;
+  }
+  /* .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+  }
+  
+  .header .logo {
+    font-size: 2rem;
+    font-weight: bolder;
+    color: black;
+  }
+  .header .logo i {
+    color: darkmagenta;
+  }
+  .header .navbar a {
+    font-size: 1.5rem;
+    margin: 0 1rem;
+    color: var(--black);
+  }
+  .header .navbar a:hover {
+    color: orangered;
+  }
+   */
+  .btn {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: 1rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 0.2rem solid black;
+    color: brown;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background: black;
+    color: #fff;
+  }
+  /* login-page */
+  .login {
+    text-align: center;
+    position: relative;
+    width: 400px;
+    min-height: 500px;
+    background-image: url("assets/images/logo1.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.444);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 20px 0;
+    
+    
+    
+  }
+  @media (max-width:480px){
+         .login{
+          width:calc(100% - 20px);
+          margin: 0 10px;
+         }
+        }
+  .page1 {
+    
+    text-align: center;
+    background-image: url("assets/images/logo.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    height: calc(100vh  - 80px);
+      
+    
+  }
+  
+  .page1 h1{
+    color:darkblue;
+    font-size: 3rem;
+  }
+  
+  /* login */
+   
+  .login .form-box {
+    width: 100%;
+    padding: 40px;
+  }
+  .form-box h2 {
+    font-size: 2rem;
+    color: mediumvioletred;
+    text-align: center;
+  }
+  .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid palevioletred;
+    margin: 30px 0;
+  }
+  .input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color:mediumvioletred;
+    font-weight: 500;
+    pointer-events: none;
+    transition: -5px;
+  }
+  .input-box input:focus ~ label,
+  .input-box input:valid ~ label {
+    top: -5px;
+  }
+  .input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color:mediumvioletred;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+  }
+  .input-box .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2rem;
+    color:mediumvioletred;
+    line-height: 57px;
+  }
+  .button {
+    width: 100%;
+    height: 45px;
+    background:mediumvioletred;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-style: 1em;
+    color: #fff;
+    font-weight: 500;
+  }
+  
+  /*  */
+  .logo img {
+    width: 70px;
+    height: 40px;
+    border-radius: 20px;
+  }
+  .logo h2 {
+    color: blue;
+  }
+  .navigation a {
+    position: relative;
+    font-size: 1.1rem;
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+  }
+  .navigation a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: darkmagenta;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.5s;
+  }
+  .navigation a:hover:after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  .navigation .btn-logo {
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: black;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: 0.5s;
+  }
+  .navigation .btn-logo:hover {
+    background: #0e686e;
+    color: #162938;
+  }
+  /* HOME */
+  /* .home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url("images/7.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  
+    
+    
+  } */
+  
+  
+  /* .home  .col-2  h3 {
+    color: darkmagenta;
+    font-size: 6rem;
+    text-align: center;
+    font-weight: bold;
+    
+  }
+  .home .col-2 p{
+    font-family:'Merienda One', cursive;
+    color:black;
+    font-weight: 600;
+    font-size: 4rem;
+  } */
+  
+  /* log.html */
+  
+  .log-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+    background: lightgrey; 
+    height: 100px;
+  }
+  
+  .log-header .logo {
+    font-size: 2rem;
+    font-weight: bolder;
+    color: black;
+  }
+  .log-header .logo i {
+    color: darkmagenta;
+  }
+  .log-header .navbar a {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: darkmagenta;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.5s;
+  }
+  .log-header .navbar a:hover {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  /* / */
+  
+  .form {
+    --bg-light: #efefef;
+    --bg-dark: white;
+    --clr:mediumvioletred;
+    --clr-alpha: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .form .input-span {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .input-span input{
+    height: 40px;
+    width: 20px;
+    
+  }
+  .form .input-span2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+  
+  }
+  .input-span2 input{
+    height: 20px;
+    width: 20px;
+  }
+  .form input[type="text"],
+  .form input[type="email"],
+  .form input[type="password"] {
+    border-radius: 0.5rem;
+    padding: 1rem 0.75rem;
+    width: 100%;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--clr-alpha);
+    outline: 2px solid var(--bg-dark);
+  }
+  .form input[type="text"]:focus,
+  .form input[type="email"]:focus,
+  .form input[type="password"]:focus {
+    outline: 2px solid var(--clr);
+  }
+  
+  .label {
+    align-self: flex-start;
+    color: var(--clr);
+    font-weight: 600;
+  }
+  
+  .form .submit {
+    padding: 1rem 0.75rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 3rem;
+    background-color: var(--bg-dark);
+    color: black;
+    border: none;
+    cursor: pointer;
+    transition: all 300ms;
+    font-weight: 600;
+    font-size: 1.6rem;
+  }
+  
+  .form .submit:hover {
+    background-color: var(--clr);
+    color: black;
+  }
+  .form .verifi {
+    padding: 1rem 0.75rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 3rem;
+    background-color: var(--bg-dark);
+    color: var(--bg-light);
+    border: none;
+    cursor: pointer;
+    transition: all 300ms;
+    font-weight: 600;
+    font-size: 1.8rem;
+  }
+  
+  .form .verifi:hover {
+    background-color: var(--clr);
+    color: black;
+  }
+  
+  
+  .span {
+    text-decoration: none;
+    color: var(--bg-dark);
+  }
+  
+  .span a {
+    color: var(--clr);
+  }
+  .span-2{
+    color:mediumvioletred;
+  }
+  
+  /*  */
+    
+  
+  /*  */
+  .error{
+    color: red;
+    font-size: 12px;
+  }
+  
+  /* 
+   */
+  
+  .fa-eye{
+    position: relative;
+    top: -40px;
+    left: 45%;
+    color: black;
+  
+  }
+  .fa-eye-slash{
+    position: relative;
+    top: -40px;
+    left: 45%;
+    color:black;
+  }
+  #hide1{
+    display: none;
+  }
+  #hide3{
+    display: none;
+  }
+   .eye-3{
+    margin-top: -10px;
+  } 
+
+
+  /*  */
+  /*-----------------------------------*\
+  #style.css
+\*-----------------------------------*/
+
+/**
+ *
+ */
+  
+  navbar-new ul li {
+    margin: 0 1rem;
+  } 
+  
+  .navbar-new ul li a {
+    color:black;
+    text-decoration: none;
+    position: relative;
+  font-size: 2.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 40px;
+  font-family: 'Playball', cursive;
+  align-items: center;
+  
+  }
+  
+/* 
+ /* */ 
+ /*  */
+ /*  */
+ /*  */
+/*  */
+/* new style */
+/* 
+  /*-----------------------------------*\
+  #main.css
+\*-----------------------------------*/
+
+/**
+ * 
+ */
+/*  */
+/* new style */
+/* 
+ /*-----------------------------------*\
+  #style.css
+\*-----------------------------------*/
+
+/**
+ 
+ */
+
+
+
+
+
+/*-----------------------------------*\
+  #CUSTOM PROPERTY
+\*-----------------------------------*/
+
+:root {
+
+/**
+ * colors
+ */
+
+--chinese-violet_30: hsla(304, 14%, 46%, 0.3);
+--chinese-violet: hsl(304, 14%, 46%);
+--sonic-silver: hsl(208, 7%, 46%);
+--old-rose_30: hsla(357, 37%, 62%, 0.3);
+--ghost-white: hsl(233, 33%, 95%);
+--light-pink: hsl(357, 93%, 84%);
+--light-gray: hsl(0, 0%, 80%);
+--old-rose: hsl(357, 37%, 62%);
+--seashell: hsl(20, 43%, 93%);
+--charcoal: hsl(203, 30%, 26%);
+--white: hsl(0, 0%, 100%);
+
+/**
+ * typography
+ */
+
+--ff-philosopher: 'Philosopher', sans-serif;
+--ff-poppins: 'Poppins', sans-serif;
+
+--fs-1: 4rem;
+--fs-2: 3.2rem;
+--fs-3: 2.7rem;
+--fs-4: 2.4rem;
+--fs-5: 2.2rem;
+--fs-6: 2rem;
+--fs-7: 1.8rem;
+
+--fw-500: 500;
+--fw-700: 700;
+
+/**
+ * spacing
+ */
+
+--section-padding: 80px;
+
+/**
+ * shadow
+ */
+
+--shadow-1: 4px 6px 10px hsla(231, 94%, 7%, 0.06);
+--shadow-2: 2px 0 15px 5px hsla(231, 94%, 7%, 0.06);
+--shadow-3: 3px 3px var(--chinese-violet);
+--shadow-4: 5px 5px var(--chinese-violet);
+
+/**
+ * radius
+ */
+
+--radius-5: 5px;
+--radius-10: 10px;
+
+/**
+ * clip path
+ */
+
+--polygon: polygon(100% 29%,100% 100%,19% 99%,0 56%);
+
+/**
+ * transition
+ */
+
+--transition-1: 0.25s ease;
+--transition-2: 0.5s ease;
+--cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+#RESET
+\*-----------------------------------*/
+
+*,
+*::before,
+*::after {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+li { list-style: none; }
+
+a,
+img,
+span,
+data,
+input,
+button,
+textarea,
+ion-icon { display: block; }
+
+a {
+color: inherit;
+text-decoration: none;
+}
+
+img { height: auto; }
+
+input,
+button,
+textarea {
+background: none;
+border: none;
+font: inherit;
+}
+
+input,
+textarea { width: 100%; }
+
+button { cursor: pointer; }
+
+address { font-style: normal; }
+
+ion-icon { pointer-events: none; }
+
+html {
+font-family: var(--ff-poppins);
+font-size: 10px;
+scroll-behavior: smooth;
+}
+
+body {
+background-color: var(--white);
+color: var(--sonic-silver);
+font-size: 1.6rem;
+line-height: 1.8;
+}
+
+:focus-visible { outline-offset: 4px; }
+
+::selection {
+background-color: var(--old-rose);
+color: var(--white);
+}
+
+::-webkit-scrollbar { width: 10px; }
+
+::-webkit-scrollbar-track { background-color: hsl(0, 0%, 98%); }
+
+::-webkit-scrollbar-thumb { background-color: hsl(0, 0%, 80%); }
+
+::-webkit-scrollbar-thumb:hover { background-color: hsl(0, 0%, 70%); }
+
+
+
+
+
+/*-----------------------------------*\
+#REUSED STYLE
+\*-----------------------------------*/
+
+.container { padding-inline: 15px; }
+.container-search{
+  padding: 20px;
+}
+
+.section { padding-block: var(--section-padding); }
+
+.section:nth-child(odd) { background-color: var(--seashell); }
+.section-subtitle {
+color: var(--old-rose);
+text-transform: uppercase;
+font-weight: var(--fw-700);
+letter-spacing: 4px;
+text-align: center;
+}
+.section-g { padding-block: var(--section-padding); }
+
+.section-g:nth-child(odd) { background-color:lavender; }
+
+.section-g-subtitle {
+color: var(--old-rose);
+text-transform: uppercase;
+font-weight: var(--fw-700);
+letter-spacing: 4px;
+text-align: center;
+}
+
+
+.section-search:nth-child(odd) { background-color:lavender; }
+
+.section-search-subtitle {
+color: var(--old-rose);
+text-transform: uppercase;
+font-weight: var(--fw-700);
+letter-spacing: 4px;
+text-align: center;
+}
+.h1,
+.h2,
+.h3,
+.tab-text {
+color: var(--charcoal);
+font-family: var(--ff-philosopher);
+line-height: 1.2;
+}
+
+.h1 { font-size: var(--fs-2); }
+
+.h2 { font-size: var(--fs-3); }
+
+.h3 { font-size: var(--fs-5); }
+
+.section-text { font-size: var(--fs-7); }
+
+.w-100 { width: 100%; }
+
+.has-before,
+.has-after {
+position: relative;
+z-index: 1;
+}
+
+.has-before::before,
+.has-after::after {
+content: "";
+position: absolute;
+}
+
+.section-title { text-align: center; }
+
+.grid-list {
+display: grid;
+gap: 25px;
+}
+
+.btn-link {
+color: var(--old-rose);
+font-weight: var(--fw-500);
+display: flex;
+align-items: center;
+gap: 5px;
+transition: var(--transition-1);
+}
+
+.btn-link:is(:hover, :focus) { color: var(--chinese-violet); }
+
+.has-underline {
+position: relative;
+margin-block-end: 60px;
+}
+
+.has-underline .span {
+height: 2px;
+background-color: var(--old-rose_30);
+width: 200px;
+margin-inline: auto;
+margin-block-start: 30px;
+}
+
+.has-underline .has-before::before {
+width: 18px;
+height: 18px;
+top: 2px;
+left: 45%;
+transform: translateY(-50%) rotate(45deg);
+background-color: var(--old-rose_30);
+box-shadow: 7px -7px var(--old-rose_30);
+}
+
+.btn {
+padding: 12px 30px;
+transition: var(--transition-1);
+}
+
+.btn-primary {
+background-color: var(--old-rose);
+color: var(--white);
+}
+
+.btn-primary:is(:hover, :focus) { background-color: var(--chinese-violet); }
+
+.btn-secondary {
+border: 1px solid var(--old-rose);
+color: var(--old-rose);
+}
+
+.btn-secondary:is(:hover, :focus) {
+background-color: var(--old-rose);
+color: var(--white);
+}
+
+.img-holder {
+aspect-ratio: var(--width) / var(--height);
+background-color: var(--light-gray);
+}
+
+.img-cover {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+
+
+
+
+/*-----------------------------------*\
+#HEADER
+\*-----------------------------------*/
+/* 
+.header {
+background-color: var(--white);
+position: absolute;
+top: 10px;
+right: 10px;
+left: 10px;
+padding-block: 12px;
+z-index: 4;
+transition: var(--transition-2);
+}
+
+.header.active {
+position: fixed;
+top: 0;
+right: 0;
+left: 0;
+filter: drop-shadow(var(--shadow-1));
+transform: translateY(-100%);
+transition: none;
+animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+0% { transform: translateY(-100%); }
+100% { transform: translateY(0); }
+}
+
+.header .container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.logo {
+font-family: var(--ff-philosopher);
+font-size: 4rem;
+color: var(--charcoal);
+line-height: 1;
+}
+
+.nav-toggle-btn {
+font-size: 40px;
+color: var(--charcoal);
+}
+
+.nav-toggle-btn ion-icon { --ionicon-stroke-width: 20px; }
+
+.nav-toggle-btn.active .open,
+.nav-toggle-btn .close { display: none; }
+
+.nav-toggle-btn .open,
+.nav-toggle-btn.active .close { display: block; }
+
+.navbar {
+position: absolute;
+top: 100%;
+left: 0;
+width: 100%;
+background-color: var(--white);
+padding-inline: 15px;
+max-height: 0;
+overflow: hidden;
+visibility: hidden;
+transition: 0.25s var(--cubic-out);
+}
+
+.navbar.active {
+max-height: 300px;
+visibility: visible;
+transition-duration: 0.5s;
+}
+
+.navbar-list { margin-block-end: 10px; }
+
+.navbar-link {
+color: var(--charcoal);
+padding-block: 8px;
+line-height: 1.5;
+transition: var(--transition-1);
+}
+
+.navbar-link:is(:hover, :focus) { color: var(--old-rose); }
+
+ */
+
+
+
+/*-----------------------------------*\
+#HERO
+\*-----------------------------------*/
+
+.hero {
+padding-block-start: calc(var(--section-padding) + 60px);
+text-align: center;
+margin-top: -130px;
+}
+
+.hero .container {
+display: grid;
+gap: 60px;
+}
+
+.hero .hero-title { margin-block: 10px 25px; }
+
+.hero-banner {
+padding-inline-start: 30px;
+padding-block-end: 30px;
+max-width: 420px;
+margin-inline: auto;
+}
+
+.hero-banner .w-100 { border-radius: 10px 30px; }
+
+.hero-banner::before {
+top: 30px;
+right: 30px;
+bottom: 0;
+left: 0;
+background-color: var(--light-pink);
+border-radius: var(--radius-10);
+z-index: -1;
+}
+
+.play-btn {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: var(--white);
+color: var(--chinese-violet);
+font-size: 22px;
+padding: 24px;
+border-radius: 50%;
+transition: var(--transition-1);
+animation: pulse 3s ease infinite;
+}
+
+.play-btn:is(:hover, :focus) { color: var(--old-rose); }
+
+@keyframes pulse {
+0%,
+50% { box-shadow: 0 0 0 0 hsla(0, 0%, 100%, 0.5); }
+
+100% { box-shadow: 0 0 0 10px transparent; }
+}
+
+
+
+
+
+/*-----------------------------------*\
+#BENEFITS
+\*-----------------------------------*/
+
+.benefits .section-text {
+text-align: center;
+margin-block: 8px 25px;
+}
+
+.benefits-card {
+padding: 25px;
+box-shadow: var(--shadow-2);
+border-radius: var(--radius-5);
+overflow: hidden;
+transition: var(--transition-2);
+
+}
+
+.benefits-card::before,
+.benefits-card::after {
+bottom: 0;
+right: 0;
+clip-path: var(--polygon);
+transition: var(--transition-2);
+}
+
+.benefits-card::before {
+width: 80px;
+height: 80px;
+background-color: var(--old-rose_30);
+transform: translateY(60px);
+}
+
+.benefits-card::after {
+width: 70px;
+height: 70px;
+background-color: var(--chinese-violet_30);
+transform: translateY(65px);
+}
+
+.benefits-card:is(:hover, :focus-within) { transform: translateY(-10px); }
+
+.benefits-card:is(:hover, :focus-within)::before,
+.benefits-card:is(:hover, :focus-within)::after { transform: translateY(0); }
+
+.benefits-card:is(:hover, :focus-within)::after { transition-delay: 0.1s; }
+
+.benefits-card .card-icon {
+background-color: var(--old-rose);
+max-width: max-content;
+padding: 10px;
+box-shadow: var(--shadow-3);
+transition: var(--transition-1);
+}
+
+.benefits-card:is(:hover, :focus) .card-icon { box-shadow: none; }
+
+.benefits-card .card-title { margin-block: 20px 15px; }
+
+.benefits-card .btn-link { margin-block-start: 15px; }
+
+
+
+
+
+/*-----------------------------------*\
+#CHAPTERS
+\*-----------------------------------*/
+
+.chapter-card  {
+height: 100%;
+width: 100%;
+
+padding: 25px;
+border-radius: var(--radius-5);
+box-shadow: var(--shadow-2);
+transition: var(--transition-2);
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+
+}
+.chapter-card h3{
+  color:aquamarine;
+  font-weight: bold;
+}
+.chapter-card p{
+  color:black;
+}
+
+.chapter-card:is(:hover, :focus-within) { transform: translateY(-10px); }
+
+.chapter-card .card-title { margin-block-end: 15px; }
+
+
+
+
+
+/*-----------------------------------*\
+#PREVIEW
+\*-----------------------------------*/
+
+.tab-list {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.tab-card {
+position: relative;
+height: 60px;
+background-color: var(--seashell);
+border-radius: var(--radius-10);
+box-shadow: var(--shadow-3);
+display: grid;
+place-content: center;
+overflow: hidden;
+cursor: pointer;
+transition: var(--transition-1);
+}
+
+.tab-card .w-100 {
+pointer-events: none;
+opacity: 0;
+transition: var(--transition-2);
+}
+
+.tab-card.active .w-100 { opacity: 1; }
+
+.tab-card.active {
+height: 40vh;
+box-shadow: none;
+}
+
+.tab-text {
+font-size: var(--fs-4);
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.tab-card.active .tab-text { display: none; }
+
+
+
+
+
+/*-----------------------------------*\
+#PRICING
+\*-----------------------------------*/
+
+.pricing-card {
+padding: 40px 50px;
+background-color: var(--white);
+text-align: center;
+transition: var(--transition-2);
+}
+
+.pricing-card:is(:hover, :focus-within),
+.pricing-card.bundle { box-shadow: var(--shadow-4); }
+
+.pricing-card:is(:hover, :focus-within) { transform: translateY(-10px); }
+
+.pricing-card .price {
+font-family: var(--ff-philosopher);
+font-size: var(--fs-1);
+color: var(--charcoal);
+font-weight: var(--fw-700);
+margin-block-start: 10px;
+}
+
+.pricing-card-list { margin-block: 20px 40px; }
+
+.pricing-card-list .card-item:not(:last-child) { border-block-end: 1px solid var(--ghost-white); }
+
+.pricing-card .card-text { padding-block: 10px; }
+
+.pricing-card .btn { margin-inline: auto; }
+
+
+
+
+
+/*-----------------------------------*\
+#AUTHOR
+\*-----------------------------------*/
+
+.author { background-color: var(--seashell); }
+
+.author .container {
+display: grid;
+gap: 40px;
+}
+
+.author :is(.section-subtitle, .section-title) { text-align: left; }
+
+.author-content {
+background-color: var(--white);
+padding: 30px;
+}
+
+.author-name {
+font-size: var(--fs-6);
+margin-block-end: 30px;
+}
+
+.author .section-text { font-size: unset; }
+
+
+
+
+
+/*-----------------------------------*\
+#ACHIEVEMENT
+\*-----------------------------------*/
+
+.section.achievement { background-color: var(--white); }
+
+.achievement-card {
+background-color: var(--seashell);
+box-shadow: var(--shadow-4);
+overflow: hidden;
+transition: var(--transition-2);
+}
+
+.achievement-card:is(:hover, :focus-within) { transform: translateY(-10px); }
+
+.achievement-card .card-content {
+position: relative;
+padding: 15px;
+}
+
+.achievement-card .abs-img {
+position: absolute;
+top: 0;
+right: -5px;
+opacity: 0.3;
+}
+
+
+
+
+
+/*-----------------------------------*\
+#CONTACT
+\*-----------------------------------*/
+
+.contact .wrapper {
+display: grid;
+gap: 25px;
+}
+
+.contact-form {
+background-color: var(--seashell);
+padding: 20px;
+}
+
+.input-field {
+background-color: var(--white);
+padding: 10px;
+margin-block-end: 15px;
+outline: none;
+border-block-end: 2px solid transparent;
+}
+
+.input-field:focus { border-color: var(--old-rose); }
+
+textarea.input-field {
+resize: vertical;
+min-height: 120px;
+height: 120px;
+max-height: 200px;
+}
+
+.contact-form .btn { margin-inline: auto; }
+
+.contact-card {
+background-color: var(--seashell);
+padding: 30px;
+}
+
+.contact-card .card-title {
+font-family: var(--ff-philosopher);
+text-transform: uppercase;
+font-weight: var(--fw-700);
+}
+
+.contact-card > li:not(:last-child) { margin-block-end: 30px; }
+
+.contact-card .card-link {
+color: var(--chinese-violet);
+transition: var(--transition-1);
+}
+
+.contact-card .card-link:is(:hover, :focus) { color: var(--old-rose); }
+
+.social-list-title {
+font-size: var(--fs-6);
+font-weight: var(--fw-700);
+margin-block-end: 15px;
+}
+
+.social-list {
+display: flex;
+gap: 10px;
+}
+
+.social-link {
+background-color: var(--old-rose);
+color: var(--white);
+font-size: 20px;
+padding: 5px;
+box-shadow: var(--shadow-3);
+transition: var(--transition-1);
+}
+
+.social-link:is(:hover, :focus) {
+background-color: var(--chinese-violet);
+box-shadow: none;
+}
+
+
+
+
+
+/*-----------------------------------*\
+#FOOTER
+\*-----------------------------------*/
+
+.footer {
+background-color: var(--seashell);
+text-align: center;
+}
+
+.footer-top {
+padding-block: 50px;
+border-block-end: 1px solid var(--chinese-violet_30);
+}
+
+.footer .logo { margin-block-end: 15px; }
+
+.footer-list {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+column-gap: 20px;
+}
+
+.footer-link {
+color: var(--charcoal);
+transition: var(--transition-1);
+}
+
+.footer-link:is(:hover, :focus) { color: var(--old-rose); }
+
+.footer-bottom { padding-block: 20px; }
+
+
+
+
+
+/*-----------------------------------*\
+#MEDIA QUERIES
+\*-----------------------------------*/
+
+/**
+* responsive for large than 575px screen
+*/
+
+@media (min-width: 575px) {
+
+/**
+ * CUSTOM PROPERTY
+ */
+
+:root {
+
+  /**
+   * typography
+   */
+
+  --fs-2: 4.5rem;
+  --fs-3: 3.5rem;
+  --fs-5: 2.5rem;
+
+}
+
+
+
+/**
+ * REUSED STYLE
+ */
+
+.container,
+.header,
+.navbar {
+  max-width: 540px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.section-text { --fs-7: 2rem; }
+
+
+
+/**
+ * HEADER
+ */
+
+.header { top: 30px; }
+
+.header.active { max-width: unset; }
+
+.navbar {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+
+/**
+ * PREVIEW
+ */
+
+.tab-card.active { height: 50vh; }
+
+
+
+/**
+ * ACHIEVEMENT
+ */
+
+.achievement-card { display: flex; }
+
+.achievement-card > * { width: 50%; }
+
+.achievement-card .card-content { padding-block: 30px; }
+
+.achievement-card .card-title { margin-block-end: 20px; }
+
+
+
+/**
+ * CONTACT
+ */
+
+.social-list-title { --fs-6: 2.2rem; }
+
+.social-link {
+  font-size: 25px;
+  padding: 8px;
+}
+
+}
+
+
+
+
+
+/**
+* responsive for large than 768px screen
+*/
+
+@media (min-width: 768px) {
+
+/**
+ * CUSTOM PROPERTY
+ */
+
+:root {
+
+  /**
+   * typography
+   */
+
+  --fs-2: 4.8rem;
+
+}
+
+
+
+/**
+ * REUSED STYLE
+ */
+
+.container,
+.header,
+.navbar { max-width: 720px; }
+
+.grid-list { grid-template-columns: 1fr 1fr; }
+
+
+
+/**
+ * HERO
+ */
+
+.hero {
+  padding-block-start: calc(var(--section-padding) + 100px);
+  text-align: left;
+}
+
+.hero .container {
+  grid-template-columns: 1fr 0.8fr;
+  align-items: center;
+}
+
+.hero .section-subtitle { text-align: left; }
+
+
+
+/**
+ * BENEFITS
+ */
+
+.benefits :is(.section-title, .section-text) { text-align: left; }
+
+.benefits-content { grid-column: 1 / 3; }
+
+
+
+/**
+ * CHAPTERS, PRICING
+ */
+
+:is(.chapters, .pricing) .grid-list li:last-child {
+  grid-column: 1 / 3;
+  max-width: calc(50% - 12.5px);
+  width: 100%;
+  margin-inline: auto;
+}
+
+
+
+/**
+ * PREVIEW
+ */
+
+.tab-card.active { height: 70vh; }
+
+
+
+/**
+ * AUTHOR
+ */
+
+.author .h2 { --fs-3: 4.2rem; }
+
+
+
+/**
+ * ACHIEVEMENT
+ */
+
+.achievement-card { flex-direction: column; }
+
+.achievement-card > * { width: 100%; }
+
+
+
+/**
+ * CONTACT
+ */
+
+.contact .wrapper { grid-template-columns: 1fr 1fr; }
+
+}
+
+
+
+
+
+/**
+* responsive for large than 992px screen
+*/
+
+@media (min-width: 992px) {
+
+/**
+ * CUSTOM PROPERTY
+ */
+
+:root {
+
+  /**
+   * typography
+   */
+
+  --fs-2: 5.4rem;
+  --fs-3: 4rem;
+
+}
+
+
+
+/**
+ * REUSED STYLE
+ */
+
+.container,
+.header,
+.navbar { max-width: 960px; }
+
+.grid-list { grid-template-columns: repeat(3, 1fr); }
+
+
+
+/**
+ * HEADER
+ */
+
+.header .container { padding-inline: 20px 30px; }
+
+.nav-toggle-btn { display: none; }
+
+.navbar,
+.navbar.active { all: unset; }
+
+.navbar-list {
+  margin-block-end: 0;
+  display: flex;
+  gap: 30px;
+}
+
+
+
+/**
+ * BENEFITS
+ */
+
+.benefits .grid-list {
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+}
+
+.benefits-content { max-width: 80%; }
+
+
+
+/**
+ * CHAPTER, PRICING
+ */
+
+:is(.chapters, .pricing) .grid-list li:last-child { all: unset; }
+
+
+
+/**
+ * PREVIEW
+ */
+
+.tab-list {
+  flex-direction: row;
+  gap: 20px;
+}
+
+.tab-text {
+  text-orientation: upright;
+  white-space: nowrap;
+  writing-mode: vertical-lr;
+}
+
+.tab-card {
+  height: 70vh;
+  max-width: 60px;
+}
+
+.tab-card.active { max-width: 650px; }
+
+
+
+/**
+ * AUTHOR
+ */
+
+.author .container {
+  grid-template-columns: 0.6fr 1fr;
+  gap: 0;
+}
+
+.author-content {
+  margin-block-start: 40px;
+  margin-inline-start: -30px;
+  padding-block-end: 70px;
+}
+
+
+
+/**
+ * ACHIEVEMENT
+ */
+
+.achievement .grid-list { grid-template-columns: 1fr 1fr; }
+
+.achievement-card { flex-direction: row; }
+
+.achievement-card > * { width: 50%; }
+
+
+
+/**
+ * CONTACT
+ */
+
+.contact .wrapper { grid-template-columns: 1fr 0.5fr; }
+
+.contact-form { padding: 40px; }
+
+}
+
+
+
+
+
+/**
+* responsive for large than 1200px screen
+*/
+
+@media (min-width: 1200px) {
+
+/**
+ * CUSTOM PROPERTY
+ */
+
+:root {
+
+  /**
+   * typography
+   */
+
+  --fs-2: 6rem;
+  --fs-3: 4.5rem;
+  --fs-4: 3rem;
+  --fs-5: 3rem;
+
+}
+
+
+
+/**
+ * REUSED STYLE
+ */
+
+.container,
+.header,
+.navbar { max-width: 1140px; }
+
+
+
+/**
+ * PREVIEW
+ */
+
+.tab-card { max-width: 75px; }
+
+.tab-card.active { max-width: 750px; }
+
+
+
+/**
+ * AUTHOR
+ */
+
+.author-content { padding: 85px 60px 115px; }
+
+
+
+/**
+ * FOOTER
+ */
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer .logo { margin-block-end: 0; }
+
+}
+/* reviews */
+
+.reviews-slider .slide .user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+
+.reviews-slider .slide .user img {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+}
+
+.reviews-slider .slide .user h3 {
+  font-size: 2rem;
+  color:#e84393;
+}
+
+.reviews-slider .slide .user .stars i {
+  font-size: 1.5rem;
+  color: var(--orange);
+}
+
+.reviews-slider .slide .text {
+  padding: 2rem;
+  background: #f5f5f5;
+  border-radius: .5rem;
+  line-height: 2;
+  font-size: 1.5rem;
+  color: black;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.reviews-slider .slide .text::before {
+  content: '';
+  position: absolute;
+  top: -1rem;
+  left: 3rem;
+  height: 2rem;
+  width: 2rem;
+  background: #f5f5f5;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+/* search */
+.head-s {
+    background-color: ghostwhite;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.head-s input {
+    padding: 0.5rem;
+    width: 60%;
+    margin-top: 10px;
+    border: 2px solid black;
+
+}
+
+.head-s button {
+    padding: 0.5rem;
+    background-color:var(--seashell) ;
+    border: none;
+    color: black;
+    cursor: pointer;
+    
+}
+.head-s button:hover{
+  background-color: #e84393;
+}
+
+
+
+#fashion-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+.fashion-item  {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fashion-item:hover {
+    transform: scale(1.05);
+}
+
+.fashion-item img {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 5px;
+    
+}
+
+.fashion-item h3 {
+    margin: 10px 0;
+}
+
+.fashion-item p {
+    color: black;
+}
+
+.fashion-item button {
+    background-color: #f0ad4e;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+
+}
+
+.fashion-item button.bookmarked {
+    background-color: #5bc0de;
+}
+/* tools */
+.tool {
+    background-color:lavender;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tool h2 {
+    margin-top: 0;
+    color: #000;
+}
+
+input, select {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#uploaded-image-preview img,
+#styled-image-container img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#final-look-summary {
+    margin-top: 20px;
+}
+
+
+#uploaded-image-preview img,
+#styled-image-container img {
+    width: 300px; /* Fixed width */
+    height: 400px; /* Fixed height */
+    object-fit: cover; /* Ensures the image fits the dimensions */
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.tool button{
+  background-color: #f0ad4e;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
+/* help & support */
+
+.container-h {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-h h2 {
+    font-size: 2remrem;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.container-h section {
+    margin-bottom: 30px;
+}
+
+.container-h .faq-item {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.container-h .faq-question {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #000;
+}
+
+.container-h .faq-answer {
+    display: none;
+    margin-top: 10px;
+    color: black;
+    font-size: 1.5rem;
+}
+
+.container-h button {
+    background-color: var(--seashell);
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container-h button:hover {
+    background-color: mediumvioletred;
+}
+
+.container-h form label {
+    display: block;
+    margin-top: 15px;
+}
+
+.container-h form textarea {
+    width: 100%;
+    height: 100px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+ .feedback label{
+  font-size: 1.5rem;
+ }
+.container-h form select {
+    margin-top: 5px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.container-h #feedback-status {
+    margin-top: 15px;
+    font-weight: bold;
+    color: green;
+}
+
+
+/* rate & review */
+/* reviews own */
+ 
+.heading {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .heading h1 {
+            font-size: 36px;
+            color: mediumvioletred;
+        }
+
+        .heading p {
+            font-size: 18px;
+            color: #777;
+        }
+
+        .container-r {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .review-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .review-form h2 {
+            font-size: 24px;
+            color: black;
+        }
+
+        .review-form label {
+            font-size: 16px;
+            margin: 10px 0 5px;
+            display: block;
+            color: #000;
+        }
+
+        .review-form input,
+        .review-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .review-form button {
+            padding: 10px 20px;
+            background-color:var(--seashell);
+            color: black;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .review-form button:hover {
+            background-color:mediumvioletred;
+        }
+
+        .reviews {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .reviews h2 {
+            font-size: 24px;
+            color: black;
+        }
+
+        .reviews .review-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .reviews .review-item h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .reviews .review-item p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .reviews .review-item .delete-button {
+            background-color: var(--seashell);
+            border: none;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .reviews .review-item .delete-button:hover {
+            text-decoration: underline;
+            background-color: mediumvioletred;
+        }
+
+        .reviews .review-item .rating {
+            font-size: 16px;
+            color: palevioletred;
+        }
+
+        #aggregated-rating {
+            margin-top: 20px;
+            font-size: 18px;
+            color:black;
+        }
+/* remainder */
+/* notification */
+.container-note {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.container-note h2{
+  color: #000;
+}
+
+
+.container-note label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.container-note input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.container-note button {
+    background-color:var(--seashell);
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.container-note button:hover {
+    background-color: mediumvioletred;
+}
+
+.container-note ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.container-note .reminder-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f0f0f0;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.container-note .delete-btn {
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.container-note .delete-btn:hover {
+    background-color: #e60000;
+}
+/* charts */
+
+.visualization {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.visualization h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: #5a67d8;
+    font-size: 2rem;
+}
+
+canvas {
+    display: block;
+    margin: 10px auto;
+    max-width: 100%;  /* Make canvas responsive */
+    height: auto;     /* Maintain aspect ratio */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    canvas {
+        width: 100%;    /* Make canvas width 100% on mobile */
+        height: auto;   /* Ensure height adjusts proportionally */
+    }
+}
+
+.visualization label, input, button {
+    display: block;
+    margin: 10px auto;
+    font-size: 1.5rem;
+
+}
+
+.visualization input {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.visualization button {
+    background-color:blanchedalmond;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.visualization button:hover {
+    background-color: mediumvioletred;
+}
+/* share */
+.section-share {
+    margin: 40px auto;
+    max-width: 800px;
+}
+.section-share h2{
+  font-size: 2rem;
+  color: #000;
+}
+
+.section-share textarea {
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+}
+
+.section-share input[type="file"] {
+    margin-bottom: 10px;
+}
+
+.section-share button {
+    padding: 10px 20px;
+    background-color: var(--seashell);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.section-share button:hover {
+    background-color: mediumvioletred;
+}
+
+/* Styling for shared vintage posts */
+.section-share .vintage-collections {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.section-share .post-container {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+ .vintage-image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+ .remove-post-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+ .remove-post-btn:hover {
+    background-color: #e53935;
+}
+
+
+/*  */
+ </style>
+  </head>
+  <body class="light-mode">
+    <!-- General User Header -->
+    <header id="general-header" class="general-header">
+      
+      <nav class="navbar-new">
+        
+         <a href="#"  onclick="showPage('home')" class="logo">Vintage<i class="fa-solid fa-leaf"></i> </a> 
+        <ul>
+          <li><a href="#" id="home-link">Home</a></li>
+          <li><a href="#" id="login-link">Login</a></li>
+          <!-- <li><a href="#" id="register-link">Register</a></li> -->
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Logged-in User Header -->
+    <header id="user-header" class="user-header">
+      <nav class="navbar-new">
+        <a href="#"  onclick="showPage('home')" class="logo">Vintage<i class="fa-solid fa-leaf"></i> </a> 
+
+        <ul class="user-nav-links">
+          <li><a href="#" id="home-user-link">Home</a></li>
+          <li><a href="#" id="sample-1-link">Vintage Gallery</a></li>
+          <li><a href="#" id="sample-2-link">Support</a></li>
+          
+          
+        </ul>
+        <div class="header-icons">
+          <div class="notification-icon" id="notificationIcon">
+            <span>&#128276;</span>
+            <!-- <p id="not-count-num"></p> -->
+          </div>
+          <div class="profile-icon" id="profileIcon">
+            <span>&#128100;</span>
+          </div>
+          <div class="nav-icon" id="navToggleIcon">
+            <span>&#9776;</span>
+          </div>
+        </div>
+        
+      </nav>
+      
+      
+
+      <div id="modeToggle" class="modeToggle-icon">
+        <img
+          src="https://res.cloudinary.com/dzrc9ejln/image/upload/v1729097552/half-moon_1_xgpusv.png"
+          class="toggle-moon-icon"
+          alt=""
+        />
+        <!-- <ion-icon name="sunny-outline" class="toggle-sun-icon"></ion-icon>
+        <ion-icon name="moon-outline" class="toggle-moon-icon"></ion-icon> -->
+        <img
+          src="https://res.cloudinary.com/dzrc9ejln/image/upload/v1729096535/sun_q4ad24.png"
+          class="toggle-sun-icon"
+          alt=""
+        />
+      </div>
+    </header>
+
+    <div class="notification-container" id="notificationContainer">
+      <button class="close-btn2" id="closeNotificationBtn">&times;</button>
+      <h2>Notifications</h2>
+      <div class="cafe-notification-content" id="notify-alert-cont"></div>
+    </div>
+
+    <div class="profile-container" id="profileContainer">
+      <button class="close-btn2" id="closeProfileBtn">&times;</button>
+      <div class="pf-cont">
+        <h2>User Profile</h2>
+        <div class="profile-content">
+          <p><strong>Name:</strong> <span id="user-name-text"></span></p>
+          <p><strong>Email:</strong> <span id="user-name-email"></span></p>
+          <button class="logout-btn" id="update-link">Update</button>
+          <button class="logout-btn" id="logout-link">Logout</button>
+         
+          
+         
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Main Content Sections -->
+    <main>
+      <!-- Home Page -->
+      <section id="home-page" class="page" >
+        <!-- <h1>Home Page</h1>
+        <p>Welcome to the home page.</p> -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+ 
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="section hero" id="home" aria-label="home">
+        <div class="container">
+
+          <div class="hero-content">
+
+            <p class="section-subtitle">Why follow trends when you can wear timelessness?</p>
+
+            <h1 class="h1 hero-title">"Vintage clothing allows us to revisit the glamour of yesterday while redefining it for today"</h1>
+
+            <!-- <p class="section-text">
+              In a world of mass production, vintage reminds us of the beauty of the unique.
+            </p> -->
+
+          </div>
+
+          <div class="hero-banner has-before">
+            <img src="./assets/images/hero-banner.png" width="431" height="596"
+              alt="things i never said, a novel by claudia wilson" class="w-100">
+
+            <button class="play-btn" aria-label="play video">
+              <ion-icon name="play-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #BENEFITS
+      -->
+
+      <section class="section benefits" id="benefits" aria-label="benefits">
+        <div class="container">
+
+          <div class="grid-list">
+
+            <li class="benefits-content">
+              <h2 class="h2 section-title">Old is the new new. Vintage is the future</h2>
+
+              <p class="section-text">“Wearing vintage means embracing sustainability and timeless beauty”</p>
+            </li>
+
+            <li>
+              <div class="benefits-card has-before has-after">
+
+                <div class="card-icon">
+                  <img src="./assets/images/benefits-1.svg" width="40" height="40" loading="lazy" alt="Experience">
+                </div>
+
+                <h3 class="h3 card-title">Experience</h3>
+
+                <p class="card-text">
+                  Offer an intuitive online platform where customers can easily explore, learn, and shop vintage pieces.
+                   Ensure every item is carefully verified for quality and originality.Provide engaging blogs, videos, and workshops on styling.
+                </p>
+
+               
+              </div>
+            </li>
+
+            <li>
+              <div class="benefits-card has-before has-after">
+
+                <div class="card-icon">
+                  <img src="./assets/images/benefits-2.svg" width="40" height="40" loading="lazy" alt="Motivation">
+                </div>
+
+                <h3 class="h3 card-title">Motivation</h3>
+
+                <p class="card-text">
+                  A passion for preserving fashion history and artistry.
+                  A desire to reduce fashion waste and promote sustainable alternatives.A love for helping individuals express themselves through unique, timeless styles.
+                  
+                </p>
+
+                
+
+              </div>
+            </li>
+
+            <li>
+              <div class="benefits-card has-before has-after">
+
+                <div class="card-icon">
+                  <img src="./assets/images/benefits-3.svg" width="40" height="40" loading="lazy" alt="Goals">
+                </div>
+
+                <h3 class="h3 card-title">Goals</h3>
+
+                <p class="card-text">
+                  Build a trusted platform offering an extensive collection of genuine vintage clothing and accessories.Advocate for sustainable fashion practices by showcasing the environmental benefits of buying vintage.
+                </p>
+
+                
+
+              </div>
+            </li>
+
+            <li>
+              <div class="benefits-card has-before has-after">
+
+                <div class="card-icon">
+                  <img src="./assets/images/benefits-4.svg" width="40" height="40" loading="lazy" alt="Vision">
+                </div>
+
+                <h3 class="h3 card-title">Vision</h3>
+
+                <p class="card-text">
+                  To become the premier global hub for vintage fashion, empowering individuals to embrace timeless styles, sustainable living, and a unique connection to history through curated collections and resources.
+                </p>
+
+                
+
+              </div>
+            </li>
+
+            <li>
+              <div class="benefits-card has-before has-after">
+
+                <div class="card-icon">
+                  <img src="./assets/images/benefits-5.svg" width="40" height="40" loading="lazy" alt="Mission">
+                </div>
+
+                <h3 class="h3 card-title">Mission</h3>
+
+                <p class="card-text">
+                  To inspire and educate fashion enthusiasts by providing authentic vintage clothing, expert styling advice, and valuable insights into the rich heritage of fashion. We aim to foster a love for sustainable and classic.
+                </p>
+
+                
+
+              </div>
+            </li>
+
+            <li>
+              <div class="benefits-card has-before has-after">
+
+                <div class="card-icon">
+                  <img src="./assets/images/benefits-6.svg" width="40" height="40" loading="lazy" alt="Strategy">
+                </div>
+
+                <h3 class="h3 card-title">Strategy</h3>
+
+                <p class="card-text">
+                  Curated Collections: Source high-quality vintage pieces from trusted suppliers and collections worldwide.
+                  Digital Presence: Develop a user-friendly website and engage audiences through social media platforms with compelling content.
+                </p>
+
+                
+
+              </div>
+            </li>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+
+
+
+
+
+      <!-- 
+        - #AUTHOR
+      -->
+
+      <section class="section author" id="author">
+        <div class="container">
+
+          <figure class="author-banner img-holder" style="--width: 700; --height: 720;">
+            <img src="./assets/images/author-banner.png" width="700" height="720" loading="lazy" alt="Martin Jenny"
+              class="img-cover">
+          </figure>
+
+          <div class="author-content">
+
+            <p class="section-subtitle">Fashion fades, only style remains the same</p>
+
+            <h2 class="h2 section-title">“Vintage is not just a style, it’s a story.”</h2>
+
+
+            <div class="section-text">
+              Vintage fashion refers to clothing and accessories that were made in a previous era, typically ranging from 20 to 100 years ago. These pieces are cherished for their historical significance, unique craftsmanship, and timeless appeal. Vintage fashion is more than just a style—it is a celebration of the artistry, culture, and sustainability of bygone times.
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- reviews starts -->
+         <section class="section pricing" id="pricing" aria-label="pricing">
+        <div class="container">
+
+          <p class="section-subtitle">Reviews</p>
+
+          <h2 class="h2 section-title has-underline">
+            True style is timeless, and there’s no better proof than vintage
+            <span class="span has-before"></span>
+          </h2>
+          <section class="reviews" id="reviews">
+
+            <div class="swiper reviews-slider">
+          
+                <div class="swiper-wrapper">
+          
+                    <div class="swiper-slide slide">
+                        <div class="user">
+                            <img src="assets/images/pic-1.png" alt="">
+                            <div class="info">
+                                <h3>john deo</h3>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text">Shopping for vintage pieces feels like an adventure. Every find is unique, with its own story and character. It’s not just clothing; it’s wearable history.</p>
+                    </div>
+          
+                    <div class="swiper-slide slide">
+                        <div class="user">
+                            <img src="assets/images/pic-2.png" alt="">
+                            <div class="info">
+                                <h3>Ayla</h3>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text">Vintage fashion lets me stand out in a world of mass-produced clothing. Every piece is distinctive, and I know I won’t see someone else wearing the same thing!</p>
+                    </div>
+          
+                    <div class="swiper-slide slide">
+                        <div class="user">
+                            <img src="assets/images/pic-3.png" alt="">
+                            <div class="info">
+                                <h3>josaf petter</h3>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+            
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text">Vintage shopping is the best way to combine sustainability with a love for fashion. It’s guilt-free and eco-friendly!.I’ve found stunning designer vintage.</p>
+                    </div>
+          
+                    
+              
+          
+                </div>
+          
+            </div>
+          
+          </section>
+        </div>
+       <!-- review ends -->
+
+
+
+
+      <!-- 
+        - #CONTACT
+      -->
+
+      <section class="section contact" id="contact" aria-label="contact">
+        <div class="container">
+
+          <p class="section-subtitle">Contact</p>
+
+          <h2 class="h2 section-title has-underline">
+            Write me anything
+            <span class="span has-before"></span>
+          </h2>
+
+          <div class="wrapper">
+
+            <form action="" class="contact-form">
+
+              <input type="text" name="name" placeholder="Your Name" required class="input-field">
+
+              <input type="email" name="email_address" placeholder="Your Email" required class="input-field">
+
+              <input type="text" name="subject" placeholder="Subject" required class="input-field">
+
+              <textarea name="message" placeholder="Your Message" class="input-field"></textarea>
+
+              <button onclick="alert('Successfully submited')" type="submit" class="btn btn-primary">Send Now</button>
+
+            </form>
+
+            <ul class="contact-card">
+
+              <li>
+                <p class="card-title">Address:</p>
+
+                <address class="address">
+                  16, Lankaway <br>
+                  Florida, USA 9xx44
+                </address>
+              </li>
+
+              <li>
+                <p class="card-title">Phone:</p>
+
+                <a href="tel:1234567890" class="card-link">123 xxx 7890</a>
+              </li>
+
+              <li>
+                <p class="card-title">Email:</p>
+
+                <a href="mailto:support@support.com" class="card-link">vintage@support.com</a>
+              </li>
+
+              <li>
+                <p class="social-list-title h3">Connect book socials</p>
+
+                <ul class="social-list">
+
+                  <li>
+                    <a href="https://www.facebook.com/"  target="_blank" class="social-link">
+                      <ion-icon name="logo-facebook"></ion-icon>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="https://x.com/i/flow/login?input_flow_data=%7B%22requested_variant%22%3A%22eyJsYW5nIjoiZW4iLCJteCI6IjIifQ%3D%3D%22%7D" target="_blank" class="social-link">
+                      <ion-icon name="logo-twitter"></ion-icon>
+                    </a>
+                  </li>
+
+                
+
+                  <li>
+                    <a href="https://www.youtube.com/" target="_blank" class="social-link">
+                      <ion-icon name="logo-youtube"></ion-icon>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="https://www.instagram.com/accounts/login/"   target="_blank" class="social-link">
+                      <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+
+ 
+
+
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+   
+
+  
+      </section>
+   
+     
+      
+      </section>
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+ 
+
+      <!-- Login Page -->
+      <section id="login-page" class="page1">
+        <h1>Login</h1>
+        <!-- <form  >
+          <label for="login-username">Username:</label>
+          <input type="text"  name="username" required />
+          <br />
+          <label for="login-password">Password:</label>
+          <input type="password"  name="password" required />
+          <br />
+          <button type="submit">Login</button>
+        </form> -->
+        <!-- login -->
+        <div class="login">
+          <form class="form" id="login-form">
+            <span class="input-span">
+              <label for="login-username" class="label">Email</label>
+              <input placeholder="Enter your Email" type="email" name="email" id="login-username"
+            /></span>
+            <span class="input-span" id="password">
+              <label for="login-password" class="label">Password</label>
+              <input placeholder="Enter your password" type="password" name="password" id="login-password"
+            /> <span class="eye eye-3" onclick="myFunction()">
+              <i  id="hide1" class="fa fa-eye"></i>
+              <i id="hide2" class="fa fa-eye-slash"></i>
+            </span></span>
+            <span class="span"> <a href="#" id="forgot-link">Forgot Password?</a></span>
+            <input class="submit" type="submit" value="Log in" />
+            <span class="span"
+              >Don't have an account? <a href="#register-form" id="register-link">Sign up</a></span
+            >
+          </form>
+        </div>
+      </section>
+      <!-- forgotpassword -->
+      <section id="forgot-page" class="page1" style="display: none">
+        <h1>Forgot Password </h1>
+        <div class="login">
+          <form class="form" id="forgot-form">
+            <span class="input-span">
+              <label for="forgot-username" class="label">Email</label>
+              <input placeholder="Enter your Email" type="email" name="email" id="forgot-username"
+            /></span> 
+            <span class="input-span" id="forgot-passwordContainer">
+              <label for="forgot-password" class="label">Password</label>
+              <input  placeholder="Enter your password" type="password" name="password" id="forgot-password"
+            /><span  onclick="myFunction2()">
+              <i  id="hide3" class="fa fa-eye"></i>
+              <i id="hide4" class="fa fa-eye-slash"></i>
+              </span>
+          </span>
+           
+           <input class="verifi" id="forgotVerifie" type="button" value="verify"/>
+          <input class="submit" id="forgotsubmit" type="submit" value="submit" />
+          <span class="span">Remenber Password goto <a href="#" id="login2-link">Login</a></span>
+            
+          </form>
+        </div>
+      </section>
+
+      <!-- Register Page -->
+      <section id="register-page" class="page1">
+        <h1>Register </h1>
+        <!-- <form id="register-form">
+          <label for="register-username">Username:</label>
+          <input type="text" id="register-username" name="username" required />
+          <br />
+          <label for="register-password">Password:</label>
+          <input
+            type="password"
+            id="register-password"
+            name="password"
+            required
+          />
+          <br />
+          <button type="submit">Register</button>
+        </form> -->
+        <div class="login">
+          <form class="form" id="register-form">
+            <span class="input-span">
+              <label for="register-name" class="label"
+                >Name</label>
+
+              <input placeholder="Enter your Name" type="text" name="name" id="register-name" required/>
+              <span class="error" id="nameError"></span>
+             </span>
+            
+            <span class="input-span">
+              <label for="register-useremail" class="label" 
+                >Email</label>
+              <input placeholder="Enter your Email" type="email" name="email" id="register-useremail" required/>
+              <span class="error" id="emailError"></span>
+          </span>
+            <span class="input-span">
+              <label for="register-password" class="label" >Password </label>
+              <input  placeholder="Enter your password" type="password" name="password" id="register-password"  required/>
+              <span class="error" id="password"></span>
+              <span class="eye eye-3" onclick="myFunction3()">
+                <i  id="hide5" class="fa fa-eye"></i>
+                <i id="hide6" class="fa fa-eye-slash"></i>
+                </span>
+            </span>
+          
+            <span class="input-span2 span-2">
+              <input type="checkbox" id="register-checkbox" name="checkbox" required />
+              Accept Terms & Conditions
+              <label for="register-checkbox" class="label"></label> 
+            </span>
+              
+            <input class="submit" type="submit" value="sign up" />
+            <span class="span "
+              >Already have an account <a href="#" id="login3-link">Login?</a></span
+            >
+            
+          </form>
+        </div>
+      </section>
+
+      <!-- User  Update -->
+      <section id="update-user-page" class="page1" style="display: none">
+        <h1>Update </h1>
+        <!-- <form id="update-form">
+          <label for="update-username">Username:</label>
+          <input type="text" id="update-username" name="username" required />
+          <br />
+
+          
+          <label for="update-password">Password:</label>
+          <input
+            type="password"
+            id="update-password"
+            name="password"
+            required
+          />
+          <br />
+          <button type="submit">update</button>
+        </form> -->
+        <!--  -->
+        <div class="login">
+          <form class="form" id="update-form">
+            <span class="input-span">
+              <label for="update-name" class="label">Name</label>
+              <input placeholder="Enter your Name" type="text" name="name" id="update-name"
+            /></span>
+            <span class="input-span">
+              <label for="update-username" class="label">Email</label>
+              <input type="email" name="email" id="update-username"
+            /></span>
+            <span class="input-span">
+              <label for="update-password" class="label">Password</label>
+              <input placeholder="Enter your password" type="password" name="password" id="update-password"
+            /><span  onclick="myFunction4()">
+              <i  id="hide7" class="fa fa-eye"></i>
+              <i id="hide8" class="fa fa-eye-slash"></i>
+              </span>
+          </span> 
+         
+            <input class="submit" type="submit" value="Update" />
+            
+          </form>
+        </div>
+      </section>
+    
+
+      <!-- Products Page (for logged-in users) -->
+      <section id="sample1-page" class="page" style="display: none">
+        <!-- <h1>Sample 1 page</h1>
+        <p>Details of sample 1</p> -->
+        <!--  -->
+        <!--  -->
+        <!-- search starts -->
+         <section class="section-search preview" aria-label="preview">
+        <div class="container-search">
+
+          <p class="section-subtitle">Find Your's</p>
+
+          <h2 class="h2 section-title has-underline">
+            Every vintage piece has a soul—find the one that speaks to yours
+            <span class="span has-before"></span>
+          </h2>
+          <header class="head-s">
+        
+            <input type="text" id="search-bar" placeholder="Search for items, designers, or trends..." onkeyup="searchItems()">
+            <button onclick="clearSearch()">Clear Search</button>
+        </header>
+        
+            <section id="fashion-list">
+                <!-- Fashion items will be displayed here dynamically -->
+            </section>
+        </div></section>
+        <!-- search ends -->
+         <!-- tools starts -->
+         <section class="section preview" aria-label="preview">
+          <div class="container-search">
+  
+            <p class="section-subtitle">Interactive Tools</p>
+  
+            <h2 class="h2 section-title has-underline">
+              Fashion is what you buy, but style is what you keep—vintage is forever
+              <span class="span has-before"></span>
+            </h2>
+             <!-- Style Matcher -->
+        <section class="tool" id="style-matcher">
+          <h2>Style Matcher</h2>
+          <p>Upload an image to explore vintage effects:</p>
+          <input type="file" id="image-upload" accept="image/*" onchange="displayUploadedImg()">
+          <div id="uploaded-image-preview"></div>
+      </section>
+
+      <!-- Era-Specific Guide -->
+      <section class="tool" id="era-guide">
+          <h2>Era-Specific Guide</h2>
+          <p>Select an era to explore fashion trends:</p>
+          <select id="era-select" onchange="showEraGuide()">
+              <option value="">-- Select Era --</option>
+              <option value="1920s">1920s</option>
+              <option value="1940s">1940s</option>
+              <option value="1960s">1960s</option>
+              <option value="1980s">1980s</option>
+          </select>
+          <div id="era-guide-content"></div>
+      </section>
+
+      <!-- Outfit Planner -->
+      <section class="tool" id="outfit-planner">
+          <h2>Outfit Planner</h2>
+          <p>Mix and match vintage items to create your outfit:</p>
+          <div id="outfit-options">
+              <div>
+                  <label for="tops">Select Top:</label>
+                  <select id="tops" onchange="updateOutfit('top')">
+                      <option value="">-- Choose Top --</option>
+                      <option value="Lace Blouse (1940s)">Lace Blouse (1940s)</option>
+                      <option value="Mod Turtleneck (1960s)">Mod Turtleneck (1960s)</option>
+                  </select>
+              </div>
+              <div>
+                  <label for="bottoms">Select Bottom:</label>
+                  <select id="bottoms" onchange="updateOutfit('bottom')">
+                      <option value="">-- Choose Bottom --</option>
+                      <option value="High-Waisted Pants (1980s)">High-Waisted Pants (1980s)</option>
+                      <option value="Pleated Skirt (1940s)">Pleated Skirt (1940s)</option>
+                  </select>
+              </div>
+              <div>
+                  <label for="accessories">Select Accessories:</label>
+                  <select id="accessories" onchange="updateOutfit('accessory')">
+                      <option value="">-- Choose Accessory --</option>
+                      <option value="Pearl Necklace (1950s)">Pearl Necklace (1950s)</option>
+                      <option value="Beret (1920s)">Beret (1920s)</option>
+                  </select>
+              </div>
+          </div>
+          <div id="outfit-preview">
+              <h3>Your Outfit:</h3>
+              <ul id="outfit-summary"></ul>
+          </div>
+      </section>
+
+      <!-- Final Look -->
+      <section class="tool" id="final-look">
+          <h2>Your Final Look</h2>
+          <p>Styled image with vintage effects and curated outfit:</p>
+          <div id="styled-image-container"></div>
+          <div id="final-look-summary"></div>
+      </section>
+      <section class="tool" id="final-look">
+          
+          <div id="styled-image-container"></div>
+          <div id="final-look-summary"></div>
+          <button id="delete-final-look" onclick="deleteFinalLook()">Delete Final Look</button>
+      </section>
+
+          </div></section>
+          <!-- tools end -->
+           <!-- share starts -->
+           <section class="section-search preview" aria-label="preview">
+            <div class="container-search">
+    
+              <p class="section-subtitle">Vintage Fashion Community</p>
+    
+              <h2 class="h2 section-title has-underline">
+                Every vintage piece has a soul—find the one that speaks to yours
+                <span class="span has-before"></span>
+              </h2>
+              <section id="vintage-collection" class="section-share">
+                <h2>Share Your Vintage Treasures</h2>
+                <div class="post-form">
+                    <textarea id="vintage-input" placeholder="Describe your latest vintage discovery..."></textarea>
+                    <input type="file" id="vintage-image-upload" accept="image/*">
+                    <button id="submit-post-btn" onclick="submitVintagePost()">Post Collection</button>
+                </div>
+                <div id="vintage-collections-list" class="vintage-collections">
+                    <!-- Shared collections will appear here -->
+                </div>
+            </section>
+            </div></section>
+            <!-- share ends -->
+        <!-- data visulization starts  -->
+            <section class="section pricing" id="pricing" aria-label="pricing">
+        <div class="container">
+
+          <p class="section-subtitle">Editable Fashion Charts</p>
+
+          <h2 class="h2 section-title has-underline">
+            Pricing based on their version
+            <span class="span has-before"></span>
+          </h2>
+            <!-- Editable Trend Analysis -->
+        <section class="visualization" id="trend-analysis">
+          <h2>Trend Analysis</h2>
+          <canvas id="trendChart" width="450" height="450"></canvas>
+          <div >
+              <label for="trend-data">Update Trend Data (comma-separated):</label>
+              <input type="text" id="trend-data" value="60, 75, 90, 120, 100, 130, 150">
+              <button onclick="updateTrendChart()">Update Chart</button>
+          </div>
+      </section>
+
+      <!-- Editable Fabric Usage -->
+      <section class="visualization" id="fabric-usage">
+          <h2>Fabric Usage</h2>
+          <canvas id="fabricChart" width="450" height="450"></canvas>
+          <div>
+              <label for="fabric-data">Update Fabric Data (comma-separated):</label>
+              <input type="text" id="fabric-data" value="40, 30, 20, 70, 50">
+              <button onclick="updateFabricChart()">Update Chart</button>
+          </div>
+      </section>
+        </div></section>
+         <!-- data visulization ends -->
+           <!-- reviews starts -->
+           <section class="section-g pricing" id="pricing" aria-label="pricing">
+            <div class="container">
+    
+              <p class="section-subtitle">Reviews</p>
+    
+              <h2 class="h2 section-title has-underline">
+                True style is timeless, and there’s no better proof than vintage
+                <span class="span has-before"></span>
+              </h2>
+              <section class="reviews" id="reviews">
+    
+                <div class="swiper reviews-slider">
+              
+                    <div class="swiper-wrapper">
+              
+                        <div class="swiper-slide slide">
+                            <div class="user">
+                                <img src="assets/images/pic-1.png" alt="">
+                                <div class="info">
+                                    <h3>john deo</h3>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text">Shopping for vintage pieces feels like an adventure. Every find is unique, with its own story and character. It’s not just clothing; it’s wearable history.</p>
+                        </div>
+              
+                        <div class="swiper-slide slide">
+                            <div class="user">
+                                <img src="assets/images/pic-2.png" alt="">
+                                <div class="info">
+                                    <h3>Ayla</h3>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text">Vintage fashion lets me stand out in a world of mass-produced clothing. Every piece is distinctive, and I know I won’t see someone else wearing the same thing!</p>
+                        </div>
+              
+                        <div class="swiper-slide slide">
+                            <div class="user">
+                                <img src="assets/images/pic-3.png" alt="">
+                                <div class="info">
+                                    <h3>josaf petter</h3>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text">Vintage shopping is the best way to combine sustainability with a love for fashion. It’s guilt-free and eco-friendly!.I’ve found stunning designer vintage.</p>
+                        </div>
+              
+                        
+                  
+              
+                    </div>
+              
+                </div>
+              
+              </section>
+            </div>
+           <!-- review ends -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     
+    
+    
+            <!--  -->
+            <!--  -->
+            <!--  -->
+            <!--  -->
+            <!--  -->
+            <!--  -->
+       
+    
+      
+          </section>
+             
+         
+  
+
+
+
+        <!--  -->
+        <!--  -->
+      
+      <!--  -->
+  
+      </section>
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!-- Farm Information Page (for logged-in users) -->
+     <section id="sample2-page" class="page" style="display: none">
+      <!--  -->
+         <!-- 
+        - #gallery starts
+      -->
+
+      <section class="section-g chapters" id="chapters">
+        <div class="container">
+
+          <p class="section-subtitle">Gallery</p>
+
+          <h2 class="h2 section-title has-underline">
+            “Wearing vintage is like wearing art—it carries history, emotion, and individuality.”
+            <span class="span has-before"></span>
+          </h2>
+
+          <ul class="grid-list">
+
+            <li>
+              <div class="chapter-card"  style="background-image: url('./assets/images/b1.jpg')">
+              
+
+                 <h3 class="h3 card-title"> Natural Fabrics</h3> 
+
+                <p class="card-text">
+                  These fabrics were dominant before the advent of synthetic materials and were often prized for their quality and durability.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div class="chapter-card" style="background-image: url('./assets/images/b5.jpg')">
+              
+
+                <h3 class="h3 card-title"> Natural Fabrics</h3> 
+
+                <p class="card-text">
+                  Popular from the 1920s to the 1950s, often called “artificial silk.”
+Used in dresses, blouses, and lightweight suits.
+                </p>
+               
+
+              </div>
+            </li>
+
+            <li>
+              <div class="chapter-card" style="background-image: url('./assets/images/b3.jpg')">
+
+               
+
+                 <h3 class="h3 card-title">Blends</h3> 
+
+                <p class="card-text">
+                  Enhanced durability and reduced cost. Common in 1950s and 1960s coats and suits.
+                </p>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="chapter-card" style="background-image: url('./assets/images/b4.jpg')">
+
+            
+
+                 <h3 class="h3 card-title">Specialty Fabrics</h3> 
+
+                <p class="card-text">
+                  A hallmark of Edwardian and 1920s evening wear, often used for capes and dresses.
+                  Resurged in the 1970s bohemian styles.
+                </p>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="chapter-card" style="background-image: url('./assets/images/b2.jpg')">
+                
+
+              <h3 class="h3 card-title">Prints and Patterns</h3> 
+
+                <p class="card-text">
+                  Common in cotton dresses from the 1930s to the 1950s.
+                  Seen in 1940s and 1950s skirts, suits, and jackets.
+                </p>
+                
+
+              </div>
+            </li>
+
+            <li>
+              <div class="chapter-card" style="background-image: url('./assets/images/b6.jpg')">
+               
+
+                 <h3 class="h3 card-title">Opulent and Ornamental Fabrics</h3> 
+
+                <p class="card-text">
+                  Crisp, smooth fabric used in ball gowns and evening wear, especially in the 1950s.
+                  Characteristic for its slight sheen and "rustling" sound when moved.
+                </p>
+                
+
+              </div>
+            </li>
+
+            <li>
+              <div class="chapter-card" style="background-image: url('./assets/images/b7.jpg')">
+           
+
+                 <h3 class="h3 card-title">Knitted and Stretch Fabrics</h3> 
+
+                <p class="card-text">
+                  Common in sweaters and fitted tops during the 1940s and 1950s.
+                  Often used in twinsets.
+                </p>
+                
+
+              </div>
+            </li>
+
+            <li>
+              <div class="chapter-card" style="background-image: url('./assets/images/b8.jpg')">
+              
+
+                 <h3 class="h3 card-title">Sheer and Flowing Fabrics</h3> 
+
+                <p class="card-text">
+                  A semi-sheer, lightweight fabric with a crinkled texture.
+                  Used in 1930s and 1940s dresses for an elegant drape.
+                  
+                </p>
+               
+
+              </div>
+            </li>
+
+            <li>
+              <div class="chapter-card" style="background-image: url('./assets/images/b9.jpg')">
+
+                 <h3 class="h3 card-title">Heavy and Durable Fabrics</h3> 
+
+                <p class="card-text">
+                  Used in utilitarian clothing, particularly in workwear from the 1930s and 1940s.
+Later adapted into casual jackets and pants.
+                </p>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section> 
+       <!-- gallery ends -->
+        <!-- 
+        - #ACHIEVEMENT starts -->
+
+      <section class="section achievement" id="achievements" aria-label="achievement">
+        <div class="container">
+
+          <p class="section-subtitle">Achievements</p>
+
+          <h2 class="h2 section-title has-underline">
+            Honor & Awards Achieved
+            <span class="span has-before"></span>
+          </h2>
+
+          <ul class="grid-list">
+
+            <li>
+              <div class="achievement-card">
+
+                <figure class="card-banner img-holder" style="--width: 450; --height: 300;">
+                  <img src="./assets/images/achievement-1.jpg" width="450" height="300" loading="lazy" alt="Nominated"
+                    class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <img src="./assets/images/award.svg" width="80" height="80" loading="lazy" alt="trophy"
+                    class="abs-img">
+
+                  <h3 class="h3 card-title">Nominated</h3>
+
+                  <p class="card-text">
+                    "Fashion is what you’re offered four times a year.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="achievement-card">
+
+                <figure class="card-banner img-holder" style="--width: 450; --height: 300;">
+                  <img src="./assets/images/achievement-2.jpg" width="450" height="300" loading="lazy" alt="Winner"
+                    class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <img src="./assets/images/award.svg" width="80" height="80" loading="lazy" alt="trophy"
+                    class="abs-img">
+
+                  <h3 class="h3 card-title">Winner</h3>
+
+                  <p class="card-text">
+                    "Vintage clothing is the ultimate in recycling.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="achievement-card">
+
+                <figure class="card-banner img-holder" style="--width: 450; --height: 300;">
+                  <img src="./assets/images/achievement-3.jpg" width="450" height="300" loading="lazy"
+                    alt="Guest of Honor" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <img src="./assets/images/award.svg" width="80" height="80" loading="lazy" alt="trophy"
+                    class="abs-img">
+
+                  <h3 class="h3 card-title">Guest of Honor</h3>
+
+                  <p class="card-text">
+                    "Fashion fades, only style remains the same."
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="achievement-card">
+
+                <figure class="card-banner img-holder" style="--width: 450; --height: 300;">
+                  <img src="./assets/images/achievement-4.jpg" width="450" height="300" loading="lazy" alt="Finalist"
+                    class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <img src="./assets/images/award.svg" width="80" height="80" loading="lazy" alt="trophy"
+                    class="abs-img">
+
+                  <h3 class="h3 card-title">Finalist</h3>
+
+                  <p class="card-text">
+                    "A vintage piece is a work of art that tells a story."
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="achievement-card">
+
+                <figure class="card-banner img-holder" style="--width: 450; --height: 300;">
+                  <img src="./assets/images/achievement-5.jpg" width="450" height="300" loading="lazy" alt="Winner"
+                    class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <img src="./assets/images/award.svg" width="80" height="80" loading="lazy" alt="trophy"
+                    class="abs-img">
+
+                  <h3 class="h3 card-title">Winner</h3>
+
+                  <p class="card-text">
+                    "Vintage is not just a trend. It’s a way of life.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="achievement-card">
+
+                <figure class="card-banner img-holder" style="--width: 450; --height: 300;">
+                  <img src="./assets/images/achievement-1.jpg" width="450" height="300" loading="lazy" alt="Nominated"
+                    class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <img src="./assets/images/award.svg" width="80" height="80" loading="lazy" alt="trophy"
+                    class="abs-img">
+
+                  <h3 class="h3 card-title">Nominated</h3>
+
+                  <p class="card-text">
+                    "There is a beauty in the old, the worn, and the forgotten.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section> 
+      <!-- achivements ends -->
+        <!-- remainder starts -->
+        <section class="section-g chapters" id="chapters">
+          <div class="container">
+  
+            <p class="section-subtitle">Set Reminder for Vintage</p>
+  
+            <h2 class="h2 section-title has-underline">
+              “Wearing vintage is like wearing art—it carries history, emotion, and individuality.”
+              <span class="span has-before"></span>
+            </h2>
+            <div class="container-note">
+             
+            
+                  <!-- Reminder Form -->
+                  <section class="reminder-section">
+                      <h2>Set Reminder</h2>
+                      <form id="reminder-form">
+                          <label for="event-name">Event Name:</label>
+                          <input type="text" id="event-name" placeholder="Enter event name" required>
+                          
+                          <label for="reminder-date">Event Date:</label>
+                          <input type="datetime-local" id="reminder-date" required>
+                          
+                          <button type="submit" id="set-reminder-btn">Set Reminder</button>
+                      </form>
+                  </section>
+      
+                  <!-- Reminders List -->
+                  <section class="reminder-list-section">
+                      <h2>Your Reminders</h2>
+                      <ul id="reminder-list"></ul>
+                  </section>
+            
+             
+          </div>
+          </div></section>
+         <!-- remainder ends -->
+        <!-- help ans support starts -->
+        <section class="section-g chapters" id="chapters">
+          <div class="container">
+  
+            <p class="section-subtitle">Help & Support</p>
+  
+            <h2 class="h2 section-title has-underline">
+              “Wearing vintage is like wearing art—it carries history, emotion, and individuality.”
+              <span class="span has-before"></span>
+            </h2>
+            <div class="container-h">
+              <!-- FAQs Section -->
+              <section class="faqs">
+                  <h2>FAQs</h2>
+                  <div class="faq-item">
+                      <div class="faq-question" onclick="toggleFaq(this)">
+                          <span>How do I change my profile picture?</span>
+                          <span class="faq-toggle">+</span>
+                      </div>
+                      <div class="faq-answer">
+                          <p>Go to your profile, click on your picture, and upload a new image.</p>
+                      </div>
+                  </div>
+                  <div class="faq-item">
+                      <div class="faq-question" onclick="toggleFaq(this)">
+                          <span>Can I reset my password?</span>
+                          <span class="faq-toggle">+</span>
+                      </div>
+                      <div class="faq-answer">
+                          <p>Yes, click "Forgot Password" on the login screen to reset it.</p>
+                      </div>
+                  </div>
+                  <div class="faq-item">
+                      <div class="faq-question" onclick="toggleFaq(this)">
+                          <span>How can I report an issue?</span>
+                          <span class="faq-toggle">+</span>
+                      </div>
+                      <div class="faq-answer">
+                          <p>Use the feedback form below to report any issues or suggest improvements.</p>
+                      </div>
+                  </div>
+              </section>
+        
+              <!-- Feedback Section -->
+              <section class="feedback">
+                  <h2>Feedback & Suggestions</h2>
+                  <form id="feedback-form">
+                      <label for="feedback-type">Type of Feedback:</label>
+                      <select id="feedback-type">
+                          <option value="suggestion">Suggestion</option>
+                          <option value="issue">Issue</option>
+                      </select>
+        
+                      <label for="feedback-message">Your Feedback:</label>
+                      <textarea id="feedback-message" placeholder="Enter your feedback here..." required></textarea>
+        
+                      <button type="submit">Submit Feedback</button>
+                  </form>
+                  <p id="feedback-status"></p>
+              </section>
+          </div>
+          </div></section>
+         <!-- help and support ends -->
+        <!-- rate and review sytarts -->
+        <section class="section-g preview" aria-label="preview">
+          <div class="container-search">
+  
+            <p class="section-subtitle">Rate & Reviews</p>
+  
+            <h2 class="h2 section-title has-underline">
+              Fashion is what you buy, but style is what you keep—vintage is forever
+              <span class="span has-before"></span>
+            </h2>
+            <div class="container-r">
+
+              <!-- Review Form -->
+              <div class="review-form">
+                  <h2>Submit a Review</h2>
+                  <label for="rating">Rating (1-5):</label>
+                  <input type="number" id="rating" min="1" max="5" required>
+          
+                  <label for="review">Review:</label>
+                  <textarea id="review" required></textarea>
+          
+                  <label for="image">Upload Image (optional):</label>
+                  <input type="file" id="image" accept="image/*">
+          
+                  <button onclick="submitReview()">Submit Review</button>
+              </div>
+          
+              <!-- Reviews Section -->
+              <div class="reviews">
+                  <h2>Reviews</h2>
+                  <div id="reviews-list"></div>
+          
+                  <div id="aggregated-rating">
+                      <h3>Average Rating:</h3>
+                      <span id="average-rating">0</span> / 5
+                  </div>
+              </div>
+          </div>
+          </div></section>
+         <!-- rate and review ends -->
+       
+          
+
+     </section>
+     <!-- #FOOTER -->
+    
+  
+    <footer class="footer">
+      <div class="container">
+  
+        <div class="footer-top">
+  
+          <a href="#"  onclick="showPage('home')" class="logo">Vintage<i class="fa-solid fa-leaf"></i> </a> 
+  
+          
+          <p>“In a world of fast fashion, vintage is a statement of individuality and sustainability.”</p>
+        </div>
+  
+        <div class="footer-bottom">
+          <p class="copyright">
+            &copy; 2024 All right reserved. Made with ❤ 
+          </p>
+        </div>
+  
+      </div>
+    </footer>
+    </main>
+  
+  
+   
+    <!-- script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <!-- icons -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- wallpaper -->
+     <!--  -->
+    <!--  -- -->
+      <!--  -->
+      <!--  -->
+        <!--  -->
+    <!--  -- -->
+      <!--  -->
+      <!--  -->
+        <!--  -->
+    <!--  -- -->
+      <!--  -->
+      <!--  -->
+        <!--  -->
+    <!--  -- -->
+      <!--  -->
+      <!--  -->
+        <!--  -->
+    <!--  -- -->
+      <!--  -->
+      <!--  -->
+<script>
+
+
+
+   function myFunction() {
+     var password = document.getElementById("login-password");
+     var eye = document.getElementById("hide1");
+     var eyeslash = document.getElementById("hide2");
+
+
+     if(password.type  === 'password'){
+        password.type = "text";
+        eye.style.display = "block";
+        eyeslash.style.display = "none";
+     }
+     else{
+         password.type = "password";
+         eye.style.display = "none";
+         eyeslash.style.display = "block";
+     }
+   }
+   //forgot
+   document.getElementById("hide3").style.display = "none"
+   function myFunction2() {
+     var password = document.getElementById("forgot-password");
+     var eye = document.getElementById("hide3");
+     var eyeslash = document.getElementById("hide4");
+
+
+     if(password.type  === 'password'){
+        password.type = "text";
+        eye.style.display = "block";
+        eyeslash.style.display = "none";
+     }
+     else{
+         password.type = "password";
+         eye.style.display = "none";
+         eyeslash.style.display = "block";
+     }
+   }
+  //  register
+  document.getElementById("hide5").style.display = "none"
+   function myFunction3() {
+     var password = document.getElementById("register-password");
+     var eye = document.getElementById("hide5");
+     var eyeslash = document.getElementById("hide6");
+
+
+     if(password.type  === 'password'){
+        password.type = "text";
+        eye.style.display = "block";
+        eyeslash.style.display = "none";
+     }
+     else{
+         password.type = "password";
+         eye.style.display = "none";
+         eyeslash.style.display = "block";
+     }
+   }
+// update-password
+document.getElementById("hide7").style.display = "none"
+   function myFunction4() {
+     var password = document.getElementById("update-password");
+     var eye = document.getElementById("hide7");
+     var eyeslash = document.getElementById("hide8");
+
+
+     if(password.type  === 'password'){
+        password.type = "text";
+        eye.style.display = "block";
+        eyeslash.style.display = "none";
+     }
+     else{
+         password.type = "password";
+         eye.style.display = "none";
+         eyeslash.style.display = "block";
+     }
+   }
+
+//    
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// DOM elements
+const generalHeader = document.getElementById("general-header");
+const userHeader = document.getElementById("user-header");
+const homePage = document.getElementById("home-page");
+const loginPage = document.getElementById("login-page");
+const registerPage = document.getElementById("register-page");
+const UpdateUserPage = document.getElementById("update-user-page");
+const sample1Page = document.getElementById("sample1-page");
+const sample2Page = document.getElementById("sample2-page");
+const forgotpage = document.getElementById("forgot-page");
+
+// Login and Register Forms
+const loginForm = document.getElementById("login-form");
+const registerForm = document.getElementById("register-form");
+const updateForm = document.getElementById("update-form");
+
+// 
+
+
+  
+
+// Show the general user header if no one is logged in
+function showHeader() {
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  if (loggedInUser) {
+    userHeader.style.display = "block";
+    generalHeader.style.display = "none";
+  } else {
+    generalHeader.style.display = "block";
+    userHeader.style.display = "none";
+  }
+}
+
+// Function to show specific page
+function showPage(page) {
+  // Hide all pages first
+  homePage.style.display = "none";
+  loginPage.style.display = "none";
+  registerPage.style.display = "none";
+  sample1Page.style.display = "none";
+  sample2Page.style.display = "none";
+  UpdateUserPage.style.display = "none";
+  forgotpage.style.display = "none";
+
+  // Show the selected page
+  if (page === "home") {
+    homePage.style.display = "block";
+  } else if (page === "login") {
+    loginPage.style.display = "block";
+  } else if (page === "register") {
+    registerPage.style.display = "block";
+  } else if (page === "sample1") {
+    sample1Page.style.display = "block";
+  }
+  else if (page === "sample2") {
+    sample2Page.style.display = "block";
+  }
+   else if (page === "update-user") {
+    UpdateUserPage.style.display = "block";
+  }
+  else if (page === "forgot-user") {
+    forgotpage.style.display = "block";
+  }
+}
+
+// Event listeners for general user navigation
+document
+  .getElementById("home-link")
+  .addEventListener("click", () => showPage("home"));
+document
+  .getElementById("login-link")
+  .addEventListener("click", () => showPage("login"));
+document
+  .getElementById("login2-link")
+  .addEventListener("click", () => showPage("login"));
+document
+  .getElementById("login3-link")
+  .addEventListener("click", () => showPage("login"));
+document
+  .getElementById("register-link")
+  .addEventListener("click", () => showPage("register"));
+document
+  .getElementById("forgot-link")
+  .addEventListener("click", () => {showPage("forgot-user")
+    updatefotgotpage()
+  });
+
+  document
+  .getElementById("update-link")
+  .addEventListener("click", () => {showPage("update-user")
+    const currentuser = JSON.parse(localStorage.getItem('loggedInUser'))
+    document.getElementById("update-name").value = currentuser.name
+    document.getElementById("update-username").value = currentuser.username
+    document.getElementById("update-password").value = currentuser.password
+
+    profileContainer.classList.remove("show");
+  overlay.classList.remove("active");
+    
+  });
+// Event listeners for logged-in user navigation
+
+document
+  .getElementById("home-user-link")
+  .addEventListener("click", () => showPage("home"));
+document
+  .getElementById("sample-1-link")
+  .addEventListener("click", () => showPage("sample1"));
+  document
+  .getElementById("sample-2-link")
+  .addEventListener("click", () => showPage("sample2"));
+
+// JavaScript for the nav toggle functionality
+const navToggleIcon = document.getElementById("navToggleIcon");
+const userNavLinks = document.querySelector(".user-nav-links");
+const userNavItems = document.querySelectorAll(".user-nav-links li a");
+
+navToggleIcon.addEventListener("click", () => {
+  // Toggle the 'active' class to show/hide nav links
+  userNavLinks.classList.toggle("active");
+});
+
+userNavItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    // userNavItems.classList.remove("open"); // Close the menu
+    userNavLinks.classList.toggle("active");
+    // alert("c");
+  });
+});
+
+//
+
+//
+
+document.addEventListener("DOMContentLoaded", () => {
+  const notificationIcon = document.getElementById("notificationIcon");
+  const profileIcon = document.getElementById("profileIcon");
+  const notificationContainer = document.getElementById(
+    "notificationContainer"
+  );
+  const profileContainer = document.getElementById("profileContainer");
+  const closeNotificationBtn = document.getElementById("closeNotificationBtn");
+  const closeProfileBtn = document.getElementById("closeProfileBtn");
+  const overlay = document.getElementById("overlay");
+
+  function closeAllContainers() {
+    notificationContainer.classList.remove("show");
+    profileContainer.classList.remove("show");
+    overlay.classList.remove("active");
+  }
+
+  // Show notification panel
+  notificationIcon.addEventListener("click", () => {
+    closeAllContainers(); // Close profile if open
+    notificationContainer.classList.add("show");
+    overlay.classList.add("active");
+  });
+
+  // Show profile panel
+  profileIcon.addEventListener("click", () => {
+    closeAllContainers(); // Close notification if open
+    profileContainer.classList.add("show");
+    overlay.classList.add("active");
+  });
+
+  // Close notification panel
+  closeNotificationBtn.addEventListener("click", () => {
+    closeAllContainers();
+  });
+
+  // Close profile panel
+  closeProfileBtn.addEventListener("click", () => {
+    closeAllContainers();
+  });
+
+  // Close panels by clicking on overlay
+  overlay.addEventListener("click", () => {
+    closeAllContainers();
+  });
+});
+
+const toggleButton = document.getElementById("modeToggle");
+const body = document.body;
+toggleButton.addEventListener("click", () => {
+  if (body.classList.contains("dark-mode")) {
+    // showToast("Toggle mode");
+    body.classList.remove("dark-mode");
+    body.classList.add("light-mode");
+  } else {
+    // showToast("Toggle mode");
+    body.classList.remove("light-mode");
+    body.classList.add("dark-mode");
+  }
+});
+
+// Register functionality
+registerForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name =document.getElementById("register-name").value;
+  const username = document.getElementById("register-useremail").value;
+  const password = document.getElementById("register-password").value;
+  const uniqueId = crypto.randomUUID();
+
+
+ 
+  const confirmPassword = document.getElementById(
+    "register-confirmpassword"
+  ).value;
+  console.log(password);
+  if (password !== confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
+
+if (
+    !/^[A-Za-z\s]+$/.test(name) 
+  ) {
+    alert("name should contain only letters .");
+    return;
+  }
+
+  
+
+  if (!username.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  if (
+    !/(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(
+      password
+    )
+  ) {
+    alert(
+      "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+    );
+    return;
+  }
+
+  
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  // Check if the user already exists
+  if (users.some((user) => user.username === username)) {
+    alert("User already exists!");
+    return;
+  }
+
+  users.push({ username, password,name, uniqueId });
+  localStorage.setItem("users", JSON.stringify(users));
+  alert("Registration successful!");
+  showPage("login");
+});
+
+// Login functionality
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const username = document.getElementById("login-username").value;
+  const password = document.getElementById("login-password").value;
+
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  // Check if the user exists and the password matches
+  const user = users.find(
+    (user) => user.username === username && user.password === password
+  );
+
+  if (user) {
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+    alert("Login successful!");
+    showHeader();
+    userupdate();
+    showPage("home");
+  } else {
+    alert("Invalid username or password!");
+  }
+});
+
+
+//update functionality
+updateForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  // Get the form input values
+  const username = document.getElementById("update-username").value;
+  const password = document.getElementById("update-password").value;
+  const name = document.getElementById("update-name").value;
+  
+
+
+  // Retrieve users and loggedInUser from localStorage
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  if (!loggedInUser) {
+    alert("No logged-in user found!");
+    return;
+  }
+
+  // Find the user by uniqueId in the users array
+  const userIndex = users.findIndex(
+    (user) => user.uniqueId === loggedInUser.uniqueId
+  );
+
+  if (userIndex !== -1) {
+    // User found, update their username and password
+    users[userIndex].username = username;
+    users[userIndex].password = password;
+    users[userIndex].name = name;
+
+    // Update users array in localStorage
+    localStorage.setItem("users", JSON.stringify(users));
+
+    // Update the loggedInUser in localStorage with new username and password
+    localStorage.setItem(
+      "loggedInUser",
+      JSON.stringify({ username, password,name, uniqueId: loggedInUser.uniqueId })
+    );
+
+    console.log("Updated loggedInUser:", localStorage.getItem("loggedInUser"));
+    alert("User Details Updated Successfully!");
+
+    // Optionally redirect or display the home page
+    showPage("home");
+    userupdate()
+  } else {
+    // If the user is not found in the array
+    alert("User not found!");
+  }
+});
+
+// Logout functionality
+document.getElementById("logout-link").addEventListener("click", () => {
+  localStorage.removeItem("loggedInUser");
+  const overlay = document.getElementById('overlay')
+  const profilecontainer = document.getElementById('profileContainer')
+  profilecontainer.classList.remove("show")
+overlay.classList.remove("active")
+  alert("Logged out successfully!");
+  showHeader();
+  showPage("home");
+});
+
+// Initial load
+showHeader();
+showPage("home");
+
+
+  
+//   //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+
+
+ 
+// 
+function userupdate(){
+  const currentuser = JSON.parse(localStorage.getItem("loggedInUser"))
+  console.log(currentuser);
+  
+  document.getElementById("user-name-email").textContent = currentuser?.username
+  document.getElementById("user-name-text").textContent = currentuser?.name
+}
+userupdate()
+
+
+const verifyEl = document.getElementById("forgotVerifie")
+verifyEl.addEventListener('click',() => {
+  const users = JSON.parse(localStorage.getItem("users"));
+        console.log(users);
+        const email = document.getElementById("forgot-username").value
+        if (!users) {
+          alert("No users found in the database");
+          return;
+        }
+        const isUserSaved = users.find((user) => user.username === email);
+        console.log(email,isUserSaved);
+        
+        if (isUserSaved) {
+          document.getElementById("forgot-passwordContainer").style.display = "block";
+          document.getElementById("forgotVerifie").style.display = "none";
+          document.getElementById("forgotsubmit").style.display =
+            "block";
+          // verifyBtn.style.display = "none";
+          // document.getElementById("forgotten-username").disabled = "disabled";
+        } else {
+          alert("User is not registered");
+        }
+})
+
+
+function updatefotgotpage(){
+  document.getElementById("forgotsubmit").style.display = "none"
+  document.getElementById("forgot-passwordContainer").style.display = "none" 
+  document.getElementById("forgotVerifie").style.display = "block" 
+   
+  
+}
+
+updatefotgotpage()
+
+ const forgottenFormEl = document.getElementById("forgot-form")
+// 
+forgottenFormEl.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("forgot-username").value;
+  const password = document.getElementById("forgot-password").value;
+  
+
+  if (
+    !/(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(
+      password
+    )
+  ) {
+    alert(
+      "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+    );
+    return;
+  }
+  const users = JSON.parse(localStorage.getItem("users"));
+  console.log(users);
+  const userIndex = users.findIndex((user) => user.username === email);
+
+  if (userIndex !== -1) {
+    // User found, update their username and password
+    users[userIndex].password = password;
+
+    // Update users array in localStorage
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("User Password Updated Successfully!");
+    userupdate();
+    forgottenFormEl.reset();
+    loginForm.reset();
+
+    // Optionally redirect or display the home page
+    showPage("login");
+  }
+
+  //
+  //
+  //
+  //
+
+  //
+  //
+  //
+  //
+});
+
+// new script
+'use strict';
+
+/**
+ * Add event on element(s)
+ */
+const addEventOnelem = function (elem, type, callback) {
+  // Check if elem is valid and handle both single elements and NodeLists
+  if (!elem) return;
+
+  if (elem instanceof NodeList) {
+    elem.forEach((el) => el.addEventListener(type, callback));
+  } else {
+    elem.addEventListener(type, callback);
+  }
+};
+
+/**
+ * Toggle navbar
+ */
+const navbar = document.querySelector("[data-navbar]");
+const navbarLinks = document.querySelectorAll("[data-nav-link]");
+const navToggler = document.querySelector("[data-nav-toggler]");
+
+const toggleNavbar = function () {
+  if (navbar && navToggler) {
+    navbar.classList.toggle("active");
+    navToggler.classList.toggle("active");
+  }
+};
+
+addEventOnelem(navToggler, "click", toggleNavbar);
+
+const closeNavbar = function () {
+  if (navbar && navToggler) {
+    navbar.classList.remove("active");
+    navToggler.classList.remove("active");
+  }
+};
+
+addEventOnelem(navbarLinks, "click", closeNavbar);
+
+/**
+ * Header active on scroll down to 100px
+ */
+const header = document.querySelector("[data-header]");
+
+const activeHeader = function () {
+  if (header) {
+    if (window.scrollY > 100) {
+      header.classList.add("active");
+    } else {
+      header.classList.remove("active");
+    }
+  }
+};
+
+addEventOnelem(window, "scroll", activeHeader);
+
+/**
+ * Filter tab
+ */
+const tabCards = document.querySelectorAll("[data-tab-card]");
+let lastTabCard = tabCards.length > 0 ? tabCards[0] : null;
+
+const navigateTab = function () {
+  if (lastTabCard) {
+    lastTabCard.classList.remove("active");
+  }
+  this.classList.add("active");
+  lastTabCard = this;
+};
+
+addEventOnelem(tabCards, "click", navigateTab);
+// 
+// 
+// // Sample vintage fashion items with images
+const fashionItems = [
+    {
+        id: 1,
+        name: "1960s Mod Dress",
+        designer: "Mary Quant",
+        era: "1960s",
+        description: "A vibrant Mod dress, known for its geometric patterns and bold colors, representing the youth culture of the 1960s.",
+        image: "https://res.cloudinary.com/dbtlrnyg5/image/upload/v1734263733/s1_prcskx.jpg",
+        bookmarked: false
+    },
+    {
+        id: 2,
+        name: "Vintage Chanel Suit",
+        designer: "Coco Chanel",
+        era: "1950s",
+        description: "A timeless classic, this Chanel suit epitomizes elegance and sophistication of the 1950s fashion.",
+        image: "https://res.cloudinary.com/dbtlrnyg5/image/upload/v1734263733/s2_gnihmc.jpg",
+        bookmarked: false
+    },
+    {
+        id: 3,
+        name: "1970s Bell-Bottom Jeans",
+        designer: "Levi's",
+        era: "1970s",
+        description: "Iconic bell-bottom jeans, popular during the disco era, featuring a flared silhouette and denim fabric.",
+        image: "https://res.cloudinary.com/dbtlrnyg5/image/upload/v1734263733/s3_egjhxc.jpg",
+        bookmarked: false
+    },
+    {
+        id: 4,
+        name: "1950s Cocktail Dress",
+        designer: "Jean Patou",
+        era: "1950s",
+        description: "Elegant cocktail dress from the 1950s featuring intricate beadwork and a flattering fit-and-flare silhouette.",
+        image: "https://res.cloudinary.com/dbtlrnyg5/image/upload/v1734263733/s4_al1cow.jpg",
+        bookmarked: false
+    },
+    {
+        id: 5,
+        name: "1980s Power Suit",
+        designer: "Gianni Versace",
+        era: "1980s",
+        description: "A bold, structured suit with sharp shoulders and a commanding look, epitomizing 1980s corporate fashion.",
+        image: "https://res.cloudinary.com/dbtlrnyg5/image/upload/v1734263733/s5_tzwpub.jpg",
+        bookmarked: false
+    },
+    {
+        id: 6,
+        name: "1940s Evening Gown",
+        designer: "Christian Dior",
+        era: "1940s",
+        description: "An elegant evening gown with soft draping and a classic silhouette, showcasing Dior's post-war haute couture.",
+        image: "https://res.cloudinary.com/dbtlrnyg5/image/upload/v1734263733/s6_cscn9o.jpg",
+        bookmarked: false
+    },
+    {
+        id: 7,
+        name: "1920s Flapper Dress",
+        designer: "Vera Wang",
+        era: "1920s",
+        description: "A dazzling flapper dress from the 1920s, adorned with sequins and fringe for an extravagant, jazz-filled night.",
+        image: "https://res.cloudinary.com/dbtlrnyg5/image/upload/v1734263734/s7_ilhjx5.jpg",
+        bookmarked: false
+    },
+    {
+        id: 8,
+        name: "1990s Grunge Jacket",
+        designer: "Marc Jacobs",
+        era: "1990s",
+        description: "A quintessential grunge-style jacket from the 1990s, featuring oversized fit and plaid patterns, epitomizing the rebellious fashion of the era.",
+        image: "https://res.cloudinary.com/dbtlrnyg5/image/upload/v1734263734/s8_spgir4.jpg",
+        bookmarked: false
+    }
+];
+
+let filteredItems = [...fashionItems]; // Initial array of fashion items
+
+// Function to display fashion items
+function displayItems(items) {
+    const fashionList = document.getElementById("fashion-list");
+    fashionList.innerHTML = ""; // Clear previous items
+
+    items.forEach(item => {
+        const itemElement = document.createElement("div");
+        itemElement.classList.add("fashion-item");
+
+        itemElement.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <h3>${item.name}</h3>
+            <p><strong>Designer:</strong> ${item.designer}</p>
+            <p><strong>Era:</strong> ${item.era}</p>
+            <p>${item.description}</p>
+            <button onclick="toggleBookmark(${item.id})" class="${item.bookmarked ? 'bookmarked' : ''}">
+                ${item.bookmarked ? 'Remove from Bookmarks' : 'Bookmark'}
+            </button>
+        `;
+
+        fashionList.appendChild(itemElement);
+    });
+}
+
+// Toggle bookmark status
+function toggleBookmark(id) {
+    const item = fashionItems.find(item => item.id === id);
+    item.bookmarked = !item.bookmarked;
+    displayItems(filteredItems);
+}
+
+// Search functionality
+function searchItems() {
+    const searchQuery = document.getElementById("search-bar").value.toLowerCase();
+    filteredItems = fashionItems.filter(item => 
+        item.name.toLowerCase().includes(searchQuery) || 
+        item.designer.toLowerCase().includes(searchQuery) ||
+        item.era.toLowerCase().includes(searchQuery)
+    );
+    displayItems(filteredItems);
+}
+
+// Clear search
+function clearSearch() {
+    document.getElementById("search-bar").value = "";
+    filteredItems = [...fashionItems];
+    displayItems(filteredItems);
+}
+
+// Initial call to display all items
+displayItems(fashionItems);
+// 
+// 
+// tools
+// Display uploaded image in Style Matcher
+function displayUploadedImg() {
+    const fileInput = document.getElementById("image-upload");
+    const preview = document.getElementById("uploaded-image-preview");
+    const styledContainer = document.getElementById("styled-image-container");
+
+    if (fileInput.files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            preview.innerHTML = `<img src="${e.target.result}" alt="Uploaded Image">`;
+            styledContainer.innerHTML = `
+                <p>Applied Effects:</p>
+                <img src="${e.target.result}" style="filter: sepia(1) contrast(1.2) brightness(0.9);" alt="Styled Image">
+            `;
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+    } else {
+        preview.innerHTML = `<p>No image uploaded. Please upload an image.</p>`;
+        styledContainer.innerHTML = "";
+    }
+}
+
+// Show era guide based on selection
+function showEraGuide() {
+    const era = document.getElementById("era-select").value;
+    const contentDiv = document.getElementById("era-guide-content");
+
+    const guides = {
+        "1920s": "The 1920s featured flapper dresses, sequins, and jazz-inspired elegance.",
+        "1940s": "The 1940s had practical yet stylish tailored suits and A-line skirts.",
+        "1960s": "The 1960s embraced bold colors and Mod fashion.",
+        "1980s": "The 1980s were about power suits, oversized blazers, and bold prints."
+    };
+
+    contentDiv.innerHTML = era ? `<p>${guides[era]}</p>` : "";
+}
+
+// Update the outfit planner preview and final output
+function updateOutfit(type) {
+    const top = document.getElementById("tops").value;
+    const bottom = document.getElementById("bottoms").value;
+    const accessory = document.getElementById("accessories").value;
+
+    const summary = document.getElementById("outfit-summary");
+    summary.innerHTML = `
+        <li><strong>Top:</strong> ${top || "No top selected"}</li>
+        <li><strong>Bottom:</strong> ${bottom || "No bottom selected"}</li>
+        <li><strong>Accessory:</strong> ${accessory || "No accessory selected"}</li>
+    `;
+
+    const finalSummary = document.getElementById("final-look-summary");
+    finalSummary.innerHTML = `
+        <p>Your curated outfit:</p>
+        <ul>
+            <li><strong>Top:</strong> ${top || "No top selected"}</li>
+            <li><strong>Bottom:</strong> ${bottom || "No bottom selected"}</li>
+            <li><strong>Accessory:</strong> ${accessory || "No accessory selected"}</li>
+        </ul>
+    `;
+}
+// Function to display the uploaded image with fixed size
+function displayUploadedImg() {
+    const fileInput = document.getElementById("image-upload");
+    const preview = document.getElementById("uploaded-image-preview");
+    const styledContainer = document.getElementById("styled-image-container");
+
+    if (fileInput.files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            preview.innerHTML = `<img src="${e.target.result}" alt="Uploaded Image">`;
+            styledContainer.innerHTML = `
+                <p>Applied Effects:</p>
+                <img src="${e.target.result}" style="filter: sepia(1) contrast(1.2) brightness(0.9);" alt="Styled Image">
+            `;
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+    } else {
+        preview.innerHTML = `<p>No image uploaded. Please upload an image.</p>`;
+        styledContainer.innerHTML = "";
+    }
+}
+
+// Function to delete the final look and reset everything
+function deleteFinalLook() {
+    // Clear uploaded image preview and styled image
+    const preview = document.getElementById("uploaded-image-preview");
+    const styledImageContainer = document.getElementById("styled-image-container");
+    preview.innerHTML = "";
+    styledImageContainer.innerHTML = "";
+
+    // Reset outfit selections
+    document.getElementById("tops").value = "";
+    document.getElementById("bottoms").value = "";
+    document.getElementById("accessories").value = "";
+
+    // Clear outfit summary
+    const finalLookSummary = document.getElementById("final-look-summary");
+    finalLookSummary.innerHTML = "";
+
+    // Clear era guide selection
+    document.getElementById("era-select").value = "";
+    const eraGuideContent = document.getElementById("era-guide-content");
+    eraGuideContent.innerHTML = "";
+
+    // Optionally, show a confirmation message
+    alert("All data has been cleared. You can start fresh!");
+}
+// review
+let reviews = [];
+        let totalRating = 0;
+
+        // Function to submit the review
+        function submitReview() {
+            const rating = document.getElementById("rating").value;
+            const reviewText = document.getElementById("review").value;
+            const imageFile = document.getElementById("image").files[0];
+
+            if (rating && reviewText) {
+                const review = {
+                    rating: parseInt(rating),
+                    reviewText,
+                    imageFile,
+                };
+
+                reviews.push(review);
+                totalRating += review.rating;
+
+                // Add the review to the page
+                displayReviews();
+
+                // Clear form after submission
+                document.getElementById("rating").value = "";
+                document.getElementById("review").value = "";
+                document.getElementById("image").value = "";
+            }
+        }
+
+        // Function to display all reviews
+        function displayReviews() {
+            const reviewsList = document.getElementById("reviews-list");
+            reviewsList.innerHTML = "";
+
+            reviews.forEach((review, index) => {
+                const reviewItem = document.createElement("div");
+                reviewItem.classList.add("review-item");
+                reviewItem.innerHTML = `
+                    <h3>Rating: ${review.rating} / 5</h3>
+                    <p>${review.reviewText}</p>
+                    ${review.imageFile ? `<img src="${URL.createObjectURL(review.imageFile)}" alt="Review Image" style="max-width: 200px;">` : ""}
+                    <button class="delete-button" onclick="deleteReview(${index})">Delete Review</button>
+                    <div class="rating">Rating: ${review.rating}</div>
+                `;
+                reviewsList.appendChild(reviewItem);
+            });
+
+            // Calculate and display average rating
+            const averageRating = reviews.length > 0 ? (totalRating / reviews.length).toFixed(2) : 0;
+            document.getElementById("average-rating").textContent = averageRating;
+        }
+
+        // Function to delete a review
+        function deleteReview(index) {
+            const review = reviews[index];
+            totalRating -= review.rating;
+            reviews.splice(index, 1);
+            displayReviews();
+        }
+// 
+// help & support
+// Toggle FAQ answer visibility
+function toggleFaq(element) {
+  const faqAnswer = element.nextElementSibling;
+  const faqToggle = element.querySelector('.faq-toggle');
+
+  if (faqAnswer.style.display === 'block') {
+      faqAnswer.style.display = 'none';
+      faqToggle.textContent = '+';
+  } else {
+      faqAnswer.style.display = 'block';
+      faqToggle.textContent = '-';
+  }
+}
+
+// Handle feedback form submission
+document.getElementById('feedback-form').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const feedbackType = document.getElementById('feedback-type').value;
+  const feedbackMessage = document.getElementById('feedback-message').value;
+
+  if (feedbackMessage.trim() !== '') {
+      document.getElementById('feedback-status').textContent =
+          `Thank you for your ${feedbackType}! We appreciate your feedback.`;
+
+      // Reset the form
+      this.reset();
+  } else {
+      alert('Please enter your feedback before submitting.');
+  }
+});
+
+// 
+
+
+// 
+// 
+// 
+// help & support
+// Toggle FAQ answer visibility
+function toggleFaq(element) {
+  const faqAnswer = element.nextElementSibling;
+  const faqToggle = element.querySelector('.faq-toggle');
+
+  if (faqAnswer.style.display === 'block') {
+      faqAnswer.style.display = 'none';
+      faqToggle.textContent = '+';
+  } else {
+      faqAnswer.style.display = 'block';
+      faqToggle.textContent = '-';
+  }
+}
+
+// Handle feedback form submission
+document.getElementById('feedback-form').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  const feedbackType = document.getElementById('feedback-type').value;
+  const feedbackMessage = document.getElementById('feedback-message').value;
+
+  if (feedbackMessage.trim() !== '') {
+      document.getElementById('feedback-status').textContent =
+          `Thank you for your ${feedbackType}! We appreciate your feedback.`;
+
+      // Reset the form
+      this.reset();
+  } else {
+      alert('Please enter your feedback before submitting.');
+  }
+});
+// 
+// 
+// notification
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('reminder-form');
+    const reminderList = document.getElementById('reminder-list');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const eventNameInput = document.getElementById('event-name');
+        const reminderDateInput = document.getElementById('reminder-date');
+        
+        const eventName = eventNameInput.value.trim();
+        const reminderDate = reminderDateInput.value;
+
+        if (!eventName || !reminderDate) {
+            alert('Please fill out all fields.');
+            return;
+        }
+
+        const reminderTime = new Date(reminderDate).getTime();
+        const currentTime = Date.now();
+
+        if (reminderTime <= currentTime) {
+            alert('Please select a future date and time.');
+            return;
+        }
+
+        // Create Reminder
+        const reminderItem = document.createElement('li');
+        reminderItem.classList.add('reminder-item');
+
+        const reminderText = document.createElement('span');
+        reminderText.textContent = `${eventName} - ${new Date(reminderDate).toLocaleString()}`;
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.classList.add('delete-btn');
+        deleteBtn.addEventListener('click', () => {
+            reminderList.removeChild(reminderItem);
+        });
+
+        reminderItem.appendChild(reminderText);
+        reminderItem.appendChild(deleteBtn);
+        reminderList.appendChild(reminderItem);
+
+        // Set Notification
+        const timeUntilReminder = reminderTime - currentTime;
+        setTimeout(() => {
+            alert(`Reminder: ${eventName} is happening now!`);
+        }, timeUntilReminder);
+
+        // Clear Form
+        eventNameInput.value = '';
+        reminderDateInput.value = '';
+    });
+});
+// 
+// 
+// charts
+// Initialize Trend Chart
+const trendCtx = document.getElementById("trendChart").getContext("2d");
+let trendChart = new Chart(trendCtx, {
+    type: "line",
+    data: {
+        labels: ["1920s", "1930s", "1940s", "1950s", "1960s", "1970s", "1980s"],
+        datasets: [{
+            label: "Trend Popularity",
+            data: [60, 75, 90, 120, 100, 130, 150],
+            borderColor: "#5a67d8",
+            backgroundColor: "rgba(90, 103, 216, 0.2)",
+            tension: 0.4,
+            fill: true
+        }]
+    },
+    options: {
+        responsive: false,
+        plugins: {
+            legend: {
+                display: true
+            }
+        },
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: "Decades"
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: "Popularity Index"
+                }
+            }
+        }
+    }
+});
+
+// Update Trend Chart
+function updateTrendChart() {
+    const trendDataInput = document.getElementById("trend-data").value;
+    const newData = trendDataInput.split(",").map(Number);
+
+    trendChart.data.datasets[0].data = newData;
+    trendChart.update();
+}
+
+// Initialize Fabric Usage Chart
+const fabricCtx = document.getElementById("fabricChart").getContext("2d");
+let fabricChart = new Chart(fabricCtx, {
+    type: "bar",
+    data: {
+        labels: ["Cotton", "Silk", "Wool", "Polyester", "Denim"],
+        datasets: [{
+            label: "Fabric Usage (%)",
+            data: [40, 30, 20, 70, 50],
+            backgroundColor: [
+                "#FF5733",
+                "#33FF57",
+                "#3357FF",
+                "#FF33A1",
+                "#FFBD33"
+            ]
+        }]
+    },
+    options: {
+        responsive: false,
+        plugins: {
+            legend: {
+                display: true
+            }
+        },
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: "Fabric Type"
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: "Usage Percentage"
+                }
+            }
+        }
+    }
+});
+
+// Update Fabric Chart
+function updateFabricChart() {
+    const fabricDataInput = document.getElementById("fabric-data").value;
+    const newData = fabricDataInput.split(",").map(Number);
+
+    fabricChart.data.datasets[0].data = newData;
+    fabricChart.update();
+}
+
+// 
+// 
+// 
+// share
+function submitVintagePost() {
+    // Get the user's input (text and image)
+    const vintageDescription = document.getElementById('vintage-input').value;
+    const vintageImageInput = document.getElementById('vintage-image-upload').files[0];
+
+    // Validate input (either description or image should be provided)
+    if (vintageDescription.trim() === "" && !vintageImageInput) {
+        alert('Please enter a description or upload an image to share.');
+        return;
+    }
+
+    // Get the container for shared posts
+    const vintageCollectionsDiv = document.getElementById('vintage-collections-list');
+    const postContainer = document.createElement('div');
+    postContainer.classList.add('post-container');
+
+    // Add description text to the post
+    const postText = document.createElement('p');
+    postText.textContent = vintageDescription;
+    postContainer.appendChild(postText);
+
+    // If an image is uploaded, display it with fixed size
+    if (vintageImageInput) {
+        const imageURL = URL.createObjectURL(vintageImageInput);
+        const imageElement = document.createElement('img');
+        imageElement.src = imageURL;
+        imageElement.alt = 'Vintage Fashion Image';
+        imageElement.classList.add('vintage-image');
+        postContainer.appendChild(imageElement);
+    }
+
+    // Create and append the delete button
+    const deletePostButton = document.createElement('button');
+    deletePostButton.textContent = 'Remove Post';
+    deletePostButton.classList.add('remove-post-btn');
+    deletePostButton.onclick = function() {
+        vintageCollectionsDiv.removeChild(postContainer); // Delete the post
+    };
+    postContainer.appendChild(deletePostButton);
+
+    // Append the post to the collection list
+    vintageCollectionsDiv.appendChild(postContainer);
+
+    // Clear the input fields after posting
+    document.getElementById('vintage-input').value = '';  // Clear description
+    document.getElementById('vintage-image-upload').value = '';  // Clear file input
+}
+
+// 
+// script.js
+var swiper = new Swiper(".reviews-slider", {
+  loop: true,
+  grabCursor : true,
+  spaceBetween: 20,
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    991: {
+      slidesPerView: 3,
+    },
+  },
+});
+// new script
+//
+
+
+</script>
+    
+
+    
+    
+    
+    
+  </body>
+</html>
